@@ -63,7 +63,8 @@
       },
       "defaultConfiguration": "development",
       "options": {
-        "proxyConfig": "apps/ui/proxy.conf.json"
+        "proxyConfig": "apps/ui/proxy.conf.json",
+        "browserTarget": "ui:build:development"
       }
     },
     "extract-i18n": {

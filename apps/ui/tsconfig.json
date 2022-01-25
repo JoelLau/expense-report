@@ -19,7 +19,15 @@
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "@app/*": ["app/*"],
+      "@core/*": ["app/core/*"],
+      "@shared/*": ["app/shared/*"],
+      "@env": ["environments/environment"],
+      "@modules/*": ["app/modules/*"],
+      "@data/*": ["app/data/*"]
+    }
   },
   "angularCompilerOptions": {
     "strictInjectionParameters": true,
