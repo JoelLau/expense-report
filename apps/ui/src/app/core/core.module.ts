@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { NgxBootstrapModule } from './ngx-bootstrap.module';
 
@@ -5,7 +6,7 @@ import { NgxBootstrapModule } from './ngx-bootstrap.module';
  * To be imported ONLY by root module
  */
 @NgModule({
-  imports: [NgxBootstrapModule],
+  imports: [HttpClientModule, NgxBootstrapModule],
 })
 export class CoreModule {
   static forRoot(): ModuleWithProviders<CoreModule> {

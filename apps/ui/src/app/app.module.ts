@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { AgGridModule } from 'ag-grid-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
@@ -11,6 +12,7 @@ import { SharedModule } from './shared/shared.module';
   imports: [
     // Angular
     BrowserModule,
+    AgGridModule.withComponents([]),
 
     // Third Party
     AuthModule,
