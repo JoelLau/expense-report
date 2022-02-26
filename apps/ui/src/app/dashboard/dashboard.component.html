@@ -1,36 +1,10 @@
-<p>dashboard works!</p>
-
-<button type="button" class="btn btn-primary" (click)="onButtonClick($event)">
-  Primary
-</button>
-<button type="button" class="btn btn-secondary" (click)="onButtonClick($event)">
-  Secondary
-</button>
-<button type="button" class="btn btn-success" (click)="onButtonClick($event)">
-  Success
-</button>
-<button type="button" class="btn btn-danger" (click)="onButtonClick($event)">
-  Danger
-</button>
-<button type="button" class="btn btn-warning" (click)="onButtonClick($event)">
-  Warning
-</button>
-<button type="button" class="btn btn-info" (click)="onButtonClick($event)">
-  Info
-</button>
-<button type="button" class="btn btn-light" (click)="onButtonClick($event)">
-  Light
-</button>
-<button type="button" class="btn btn-dark" (click)="onButtonClick($event)">
-  Dark
-</button>
-<button type="button" class="btn btn-link" (click)="onButtonClick($event)">
-  Link
-</button>
-
-<ag-grid-angular
-  style="width: 100%; height: 500px"
-  class="ag-theme-alpine"
-  [rowData]="rowData"
-  [columnDefs]="columnDefs"
-></ag-grid-angular>
+<header>
+  <h1>Dashboard Page</h1>
+</header>
+<main>
+  <ag-grid-angular
+    style="width: 100%; height: 500px; padding: 1em 2em"
+    class="ag-theme-alpine"
+    [gridOptions]="gridOptions"
+  ></ag-grid-angular>
+</main>
