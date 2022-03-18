@@ -5,8 +5,10 @@
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-      "plugins": ["unused-imports", "simple-import-sort"],
+      "extends": ["plugin:import/recommended", "plugin:import/typescript"],
       "rules": {
+        "import/order": ["error", { "newlines-between": "never" }],
+        "import/no-unresolved": "off",
         "@nrwl/nx/enforce-module-boundaries": [
           "error",
           {
@@ -18,18 +20,6 @@
                 "onlyDependOnLibsWithTags": ["*"]
               }
             ]
-          }
-        ],
-        "simple-import-sort/exports": "error",
-        "simple-import-sort/imports": "error",
-        "unused-imports/no-unused-imports": "error",
-        "unused-imports/no-unused-vars": [
-          "warn",
-          {
-            "vars": "all",
-            "varsIgnorePattern": "^_",
-            "args": "after-used",
-            "argsIgnorePattern": "^_"
           }
         ]
       }
