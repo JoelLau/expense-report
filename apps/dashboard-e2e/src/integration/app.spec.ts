@@ -1,13 +1,9 @@
-import { getGreeting } from '../support/app.po';
-
 describe('dashboard', () => {
   beforeEach(() => cy.visit('/'));
 
   it('should display welcome message', () => {
-    // Custom command example, see `../support/commands.ts` file
-    cy.login('my-email@something.com', 'myPassword');
-
-    // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Welcome dashboard');
+    cy.contains('Welcome to dashboard!').should('exist');
+    cy.contains('Welcome to api!').should('exist');
+    cy.contains('sample-page works!').should('exist');
   });
 });
