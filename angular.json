@@ -4,6 +4,8 @@
     "api": "apps/api",
     "api-interfaces": "libs/api-interfaces",
     "dashboard": "apps/dashboard",
-    "dashboard-e2e": "apps/dashboard-e2e"
+    "dashboard-e2e": "apps/dashboard-e2e",
+    "prisma": "libs/prisma",
+    "transaction-line-item-nest-api": "libs/transaction-line-item/nest-api"
   }
 }
