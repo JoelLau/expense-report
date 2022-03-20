@@ -15,7 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@expense-report/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+      "@expense-report/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@expense-report/prisma": ["libs/prisma/src/index.ts"],
+      "@expense-report/transaction-line-item/nest-api": [
+        "libs/transaction-line-item/nest-api/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
