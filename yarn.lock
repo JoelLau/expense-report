@@ -2761,6 +2761,18 @@ adjust-sourcemap-loader@^4.0.0:
     loader-utils "^2.0.0"
     regex-parser "^2.2.11"
 
+ag-grid-angular@^27.1.1:
+  version "27.1.1"
+  resolved "https://registry.yarnpkg.com/ag-grid-angular/-/ag-grid-angular-27.1.1.tgz#0c1a10f77bab2ac903c3759442a18c5cb14709d0"
+  integrity sha512-XXOZ8tTIXmaKxgNIcguHfxBRlKYuduWy1wSmglWmPveekzk2aZb30wQ1Vi+0WH4M8bZi5i7oSQN/4Tmj8NrCvw==
+  dependencies:
+    tslib "^1.10.0"
+
+ag-grid-community@^27.1.0:
+  version "27.1.0"
+  resolved "https://registry.yarnpkg.com/ag-grid-community/-/ag-grid-community-27.1.0.tgz#17f73173444a9efc4faea0f0cd6c5090e698f7ee"
+  integrity sha512-SWzIJTNa7C6Vinizelcoc1FAJQRt1pDn+A8XHQDO2GTQT+VjBnPL8fg94fLJy0EEvqaN5IhDybNS0nD07SKIQw==
+
 agent-base@6, agent-base@^6.0.2:
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/agent-base/-/agent-base-6.0.2.tgz#49fff58577cfee3f37176feab4c22e00f86d7f77"
@@ -9327,7 +9339,7 @@ tslib@2.3.1, tslib@^2.0.0, tslib@^2.1.0, tslib@^2.3.0, tslib@^2.3.1:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
   integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
 
-tslib@^1.8.1, tslib@^1.9.0:
+tslib@^1.10.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==

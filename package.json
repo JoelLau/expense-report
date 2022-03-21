@@ -27,6 +27,8 @@
     "@nestjs/platform-express": "^8.0.0",
     "@nrwl/angular": "13.9.2",
     "@prisma/client": "^3.11.0",
+    "ag-grid-angular": "^27.1.1",
+    "ag-grid-community": "^27.1.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.4.0",
     "tslib": "^2.0.0",
