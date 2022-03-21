@@ -1,1 +1,6 @@
-<p>sample-page works!</p>
+<ag-grid-angular
+  style="width: 100%; height: 50vh"
+  class="ag-theme-alpine"
+  [rowData]="transactionLineItem$ | async"
+  [gridOptions]="gridOptions"
+></ag-grid-angular>
