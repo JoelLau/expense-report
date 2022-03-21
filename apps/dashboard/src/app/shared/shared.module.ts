@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AgGridModule } from 'ag-grid-angular';
 
 /**
  * To be imported by **ALL MODULES**
@@ -16,7 +17,7 @@ const basicModules = [
 ];
 
 @NgModule({
-  imports: [...basicModules],
-  exports: [...basicModules],
+  imports: [...basicModules, AgGridModule.withComponents([])],
+  exports: [...basicModules, AgGridModule],
 })
 export class SharedModule {}
