@@ -6,7 +6,11 @@ import { TransactionLineItem } from '@prisma/client';
 export class TransactionLineItemNestApiService {
   constructor(private readonly prisma: PrismaService) {}
 
-  getTransactionLineItems(): Promise<TransactionLineItem[]> {
+  getTransactionLineItems(): Promise<TransactionLineItem[] | null> {
     return this.prisma.transactionLineItem.findMany();
+  }
+
+  getTransactionLineItem(id: string): Promise<TransactionLineItem | null> {
+    return this.prisma.transactionLineItem.findUnique({ where: { id } });
   }
 }

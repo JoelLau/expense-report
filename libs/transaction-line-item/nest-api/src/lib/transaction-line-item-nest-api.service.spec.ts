@@ -30,4 +30,15 @@ describe('TransactionLineItemNestApiService', () => {
       expect(findManySpy).toHaveBeenCalled();
     });
   });
+
+  describe('getTransactionLineItem()', () => {
+    it('should call service.getTransactionLineItem()', async () => {
+      const findUniqueSpy = jest.spyOn(
+        prisma.transactionLineItem,
+        'findUnique'
+      );
+      await service.getTransactionLineItem('5');
+      expect(findUniqueSpy).toHaveBeenCalled();
+    });
+  });
 });
