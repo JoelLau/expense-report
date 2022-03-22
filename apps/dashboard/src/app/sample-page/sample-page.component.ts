@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TransactionLineItem } from '@prisma/client';
 import {
   GridOptions,
   GridReadyEvent,
@@ -13,13 +14,12 @@ import { TransactionLineItemService } from './transaction-line-item.service';
 })
 export class SamplePageComponent {
   gridOptions: GridOptions;
-  transactionLineItem$: Observable<any[]> = this.transactionLineItemService
-    .fetchAll()
-    .pipe(
-      map(({ data }: any) =>
-        (data as any[]).sort(({ id: a }, { id: b }) => a - b)
-      )
-    ) as Observable<any[]>;
+  transactionLineItem$: Observable<TransactionLineItem[]> =
+    this.transactionLineItemService
+      .fetchAll()
+      .pipe(
+        map(({ data }: { data: TransactionLineItem[] }) => data.sort())
+      ) as Observable<TransactionLineItem[]>;
 
   constructor(private transactionLineItemService: TransactionLineItemService) {
     this.gridOptions = {
@@ -30,7 +30,7 @@ export class SamplePageComponent {
           headerName: 'Amount',
           type: 'numericColumn',
           valueFormatter: ({ value }: ValueFormatterParams): string =>
-            Number(value / 100).toFixed(2),
+            `$${Number(value / 100).toFixed(2)}`,
         },
         { field: 'category', headerName: 'Category' },
         {
