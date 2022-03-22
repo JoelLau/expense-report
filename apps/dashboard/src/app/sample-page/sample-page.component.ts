@@ -1,4 +1,3 @@
-import { SlicePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import {
   GridOptions,
