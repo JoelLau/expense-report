@@ -1,3 +1,4 @@
+import { formatCurrency, formatDate } from '@angular/common';
 import { Component } from '@angular/core';
 import { TransactionLineItem } from '@expense-report/api-interfaces';
 import {
@@ -30,7 +31,7 @@ export class SamplePageComponent {
           headerName: 'Amount',
           type: 'numericColumn',
           valueFormatter: ({ value }: ValueFormatterParams): string =>
-            `$${Number(value / 100).toFixed(2)}`,
+            formatCurrency(Number(value / 100), 'en', '$'),
         },
         { field: 'category', headerName: 'Category' },
         {
@@ -38,7 +39,7 @@ export class SamplePageComponent {
           headerName: 'Date',
           type: 'dateColumn',
           valueFormatter: ({ value }: ValueFormatterParams): string =>
-            new Date(value).toISOString().slice(0, 10),
+            formatDate(value, 'yyyy-MM-dd', 'en'),
         },
         { field: 'description', headerName: 'Description' },
         { field: 'name', headerName: 'Name' },
