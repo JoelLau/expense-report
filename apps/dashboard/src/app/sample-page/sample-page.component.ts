@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TransactionLineItem } from '@prisma/client';
+import { TransactionLineItem } from '@expense-report/api-interfaces';
 import {
   GridOptions,
   GridReadyEvent,

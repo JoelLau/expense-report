@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { TransactionLineItem } from '@prisma/client';
+import { TransactionLineItem } from '@expense-report/api-interfaces';
 
 @Injectable({
   providedIn: 'root',

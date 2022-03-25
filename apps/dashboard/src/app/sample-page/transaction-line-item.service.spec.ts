@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-
 import { TransactionLineItemService } from './transaction-line-item.service';
 
 describe('TransactionLineItemService', () => {

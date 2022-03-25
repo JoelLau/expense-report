@@ -1,6 +1,7 @@
+import { TransactionLineItem } from '@expense-report/api-interfaces';
 import { PrismaService } from '@expense-report/prisma';
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { Prisma, TransactionLineItem } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class TransactionLineItemNestApiService {

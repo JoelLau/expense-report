@@ -10,7 +10,8 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
-import { Prisma, TransactionLineItem } from '@prisma/client';
+import { Prisma } from '@prisma/client';
+import { TransactionLineItem } from '@expense-report/api-interfaces';
 import { TransactionLineItemNestApiService } from './transaction-line-item-nest-api.service';
 
 @Controller('transaction-line-items')
