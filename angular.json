@@ -4,6 +4,8 @@
     "api": "apps/api",
     "api-interfaces": "libs/api-interfaces",
     "expense-report": "apps/expense-report",
-    "expense-report-e2e": "apps/expense-report-e2e"
+    "expense-report-e2e": "apps/expense-report-e2e",
+    "expenses-api": "libs/expenses/api",
+    "expenses-shared": "libs/expenses/shared"
   }
 }
