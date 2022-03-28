@@ -16,6 +16,9 @@
     "baseUrl": ".",
     "paths": {
       "@expense-report/expenses/api": ["libs/expenses/api/src/index.ts"],
+      "@expense-report/expenses/data-access": [
+        "libs/expenses/data-access/src/index.ts"
+      ],
       "@expense-report/expenses/shared": ["libs/expenses/shared/src/index.ts"],
       "@expense-report/expenses/ui": ["libs/expenses/ui/src/index.ts"],
       "@expense-report/shared/api/prisma": [

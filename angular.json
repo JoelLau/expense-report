@@ -5,6 +5,7 @@
     "expense-report": "apps/expense-report",
     "expense-report-e2e": "apps/expense-report-e2e",
     "expenses-api": "libs/expenses/api",
+    "expenses-data-access": "libs/expenses/data-access",
     "expenses-shared": "libs/expenses/shared",
     "expenses-ui": "libs/expenses/ui",
     "shared-api-prisma": "libs/shared/api/prisma",

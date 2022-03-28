@@ -14,7 +14,8 @@ import { Expense } from '@prisma/client';
 import { ExpensesApiService } from './expenses-api.service';
 import { ExpenseCreateInput } from '@expense-report/expenses/shared';
 
-@Controller('expenses')
+export const EXPENSES_API_ROUTE = 'expenses';
+@Controller(EXPENSES_API_ROUTE)
 export class ExpensesApiController {
   constructor(private service: ExpensesApiService) {}
 
@@ -31,7 +32,9 @@ export class ExpensesApiController {
   }
 
   @Get()
-  async getExpenses(@Query('id') rawIds: string): Promise<{ data: Expense[] }> {
+  async getExpenses(
+    @Query('id') rawIds: string
+  ): Promise<{ data: Expense[] | null }> {
     const ids = rawIds
       ? (rawIds || '').split(',').map((rawId) => rawId.trim())
       : [];
