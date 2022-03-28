@@ -1,14 +1,14 @@
 {
   "projectType": "library",
-  "root": "libs/expenses/ui",
-  "sourceRoot": "libs/expenses/ui/src",
+  "root": "libs/expenses/ui/page",
+  "sourceRoot": "libs/expenses/ui/page/src",
   "prefix": "expense-report",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/expenses/ui"],
+      "outputs": ["coverage/libs/expenses/ui/page"],
       "options": {
-        "jestConfig": "libs/expenses/ui/jest.config.js",
+        "jestConfig": "libs/expenses/ui/page/jest.config.js",
         "passWithNoTests": true
       }
     },
@@ -16,8 +16,8 @@
       "executor": "@nrwl/linter:eslint",
       "options": {
         "lintFilePatterns": [
-          "libs/expenses/ui/src/**/*.ts",
-          "libs/expenses/ui/src/**/*.html"
+          "libs/expenses/ui/page/src/**/*.ts",
+          "libs/expenses/ui/page/src/**/*.html"
         ]
       }
     }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { Route, RouterModule } from '@angular/router';
-import { ExpensesUiComponent } from './expenses-ui.component';
+import { RouterModule, Route } from '@angular/router';
+import { ExpensesUiPageComponent } from './expense-ui-page.component';
 
 export const routes: Route[] = [
   {
@@ -10,7 +10,7 @@ export const routes: Route[] = [
   },
   {
     path: '',
-    component: ExpensesUiComponent,
+    component: ExpensesUiPageComponent,
   },
   {
     path: '**',
@@ -23,4 +23,4 @@ export const routes: Route[] = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class ExpensesUiRoutingModule {}
+export class ExpensesUiPageRoutingModule {}

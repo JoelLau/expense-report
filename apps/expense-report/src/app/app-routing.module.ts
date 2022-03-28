@@ -10,7 +10,9 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('@expense-report/expenses/ui').then((m) => m.ExpensesUiModule),
+      import('@expense-report/expenses/ui/page').then(
+        (m) => m.ExpensesUiPageModule
+      ),
   },
   {
     path: '**',
