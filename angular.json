@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "projects": {
+    "api": "apps/api",
+    "api-interfaces": "libs/api-interfaces",
+    "expense-report": "apps/expense-report",
+    "expense-report-e2e": "apps/expense-report-e2e"
+  }
+}

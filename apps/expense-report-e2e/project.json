@@ -1,0 +1,28 @@
+{
+  "root": "apps/expense-report-e2e",
+  "sourceRoot": "apps/expense-report-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/expense-report-e2e/cypress.json",
+        "devServerTarget": "expense-report:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "expense-report:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/expense-report-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["expense-report"]
+}
