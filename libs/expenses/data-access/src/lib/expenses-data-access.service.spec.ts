@@ -5,8 +5,7 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { ExpensesDataAccessService } from './expenses-data-access.service';
-import { EXPENSES_API_ROUTE } from '@expense-report/expenses/api';
-import { expenses } from '@expense-report/expenses/shared';
+import { expenses, EXPENSES_API_ROUTE } from '@expense-report/expenses/shared';
 
 describe('ExpensesDataAccessService', () => {
   let service: ExpensesDataAccessService;

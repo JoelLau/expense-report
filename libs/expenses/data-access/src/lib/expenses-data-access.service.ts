@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { EXPENSES_API_ROUTE } from '@expense-report/expenses/api';
-import { ExpenseCreateInput } from '@expense-report/expenses/shared';
+import {
+  ExpenseCreateInput,
+  EXPENSES_API_ROUTE,
+} from '@expense-report/expenses/shared';
 
 @Injectable({
   providedIn: 'root',
@@ -10,30 +12,32 @@ export class ExpensesDataAccessService {
   constructor(private http: HttpClient) {}
 
   createExpenses(expenses: ExpenseCreateInput[]) {
-    return this.http.post(`${EXPENSES_API_ROUTE}`, expenses);
+    return this.http.post(`api/${EXPENSES_API_ROUTE}`, expenses);
   }
 
   getExpenses() {
-    return this.http.get(`${EXPENSES_API_ROUTE}`);
+    return this.http.get(`api/${EXPENSES_API_ROUTE}`);
   }
 
   getExpense(expenseId: string) {
-    return this.http.get(`${EXPENSES_API_ROUTE}/${expenseId}`);
+    return this.http.get(`api/${EXPENSES_API_ROUTE}/${expenseId}`);
   }
 
   updateExpenses(expenses: ExpenseCreateInput[]) {
-    return this.http.patch(`${EXPENSES_API_ROUTE}`, expenses);
+    return this.http.patch(`api/${EXPENSES_API_ROUTE}`, expenses);
   }
 
   updateExpense(expenseId: string, expense: ExpenseCreateInput) {
-    return this.http.patch(`${EXPENSES_API_ROUTE}/${expenseId}`, expense);
+    return this.http.patch(`api/${EXPENSES_API_ROUTE}/${expenseId}`, expense);
   }
 
   deleteExpense(expenseId: string) {
-    return this.http.delete(`${EXPENSES_API_ROUTE}/${expenseId}`);
+    return this.http.delete(`api/${EXPENSES_API_ROUTE}/${expenseId}`);
   }
 
   deleteExpenses(expenseIds: string[]) {
-    return this.http.delete(`${EXPENSES_API_ROUTE}/${expenseIds.join(',')}`);
+    return this.http.delete(
+      `api/${EXPENSES_API_ROUTE}/${expenseIds.join(',')}`
+    );
   }
 }

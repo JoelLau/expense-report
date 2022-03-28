@@ -12,9 +12,11 @@ import {
 } from '@nestjs/common';
 import { Expense } from '@prisma/client';
 import { ExpensesApiService } from './expenses-api.service';
-import { ExpenseCreateInput } from '@expense-report/expenses/shared';
+import {
+  ExpenseCreateInput,
+  EXPENSES_API_ROUTE,
+} from '@expense-report/expenses/shared';
 
-export const EXPENSES_API_ROUTE = 'expenses';
 @Controller(EXPENSES_API_ROUTE)
 export class ExpensesApiController {
   constructor(private service: ExpensesApiService) {}
