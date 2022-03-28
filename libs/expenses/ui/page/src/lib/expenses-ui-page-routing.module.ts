@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Route } from '@angular/router';
-import { ExpensesUiPageComponent } from './expense-ui-page.component';
+import { ExpensesUiPageComponent } from './expenses-ui-page.component';
 
 export const routes: Route[] = [
   {

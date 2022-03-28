@@ -7,6 +7,7 @@
     "expenses-api": "libs/expenses/api",
     "expenses-data-access": "libs/expenses/data-access",
     "expenses-shared": "libs/expenses/shared",
+    "expenses-ui-list": "libs/expenses/ui/list",
     "expenses-ui-page": "libs/expenses/ui/page",
     "shared-api-prisma": "libs/shared/api/prisma",
     "shared-ng-common": "libs/shared/ng/common",
