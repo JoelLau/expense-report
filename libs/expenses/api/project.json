@@ -1,0 +1,22 @@
+{
+  "root": "libs/expenses/api",
+  "sourceRoot": "libs/expenses/api/src",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/expenses/api/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/expenses/api"],
+      "options": {
+        "jestConfig": "libs/expenses/api/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
