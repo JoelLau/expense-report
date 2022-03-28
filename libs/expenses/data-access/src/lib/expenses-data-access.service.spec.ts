@@ -2,14 +2,12 @@ import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
-import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { ExpensesDataAccessService } from './expenses-data-access.service';
 import { expenses, EXPENSES_API_ROUTE } from '@expense-report/expenses/shared';
 
 describe('ExpensesDataAccessService', () => {
   let service: ExpensesDataAccessService;
-  let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
 
   beforeEach(() => {
@@ -18,7 +16,6 @@ describe('ExpensesDataAccessService', () => {
       providers: [ExpensesDataAccessService],
     });
     service = TestBed.inject(ExpensesDataAccessService);
-    httpClient = TestBed.inject(HttpClient);
     httpTestingController = TestBed.inject(HttpTestingController);
   });
 
