@@ -4,6 +4,6 @@ import { Message } from '@expense-report/api-interfaces';
 @Injectable()
 export class AppService {
   getData(): Message {
-    return { message: 'Welcome to api!' };
+    return { message: 'Expense Report API' };
   }
 }

@@ -6,7 +6,7 @@ import { Message } from '@expense-report/api-interfaces';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get('hello')
+  @Get('')
   getData(): Message {
     return this.appService.getData();
   }
