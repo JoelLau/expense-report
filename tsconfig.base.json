@@ -19,7 +19,11 @@
       "@expense-report/expenses/shared": ["libs/expenses/shared/src/index.ts"],
       "@expense-report/shared/api/prisma": [
         "libs/shared/api/prisma/src/index.ts"
-      ]
+      ],
+      "@expense-report/shared/ng/common": [
+        "libs/shared/ng/common/src/index.ts"
+      ],
+      "@expense-report/shared/ng/core": ["libs/shared/ng/core/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
