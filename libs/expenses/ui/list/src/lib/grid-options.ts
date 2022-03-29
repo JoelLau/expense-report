@@ -3,7 +3,7 @@ import { GridReadyEvent, ValueFormatterParams } from 'ag-grid-community';
 
 export const gridOptions = {
   columnDefs: [
-    { field: 'id', headerName: 'Id' },
+    { field: 'id', headerName: 'Id' }, // TODO: remove before release
     {
       field: 'amount',
       headerName: 'Amount',
