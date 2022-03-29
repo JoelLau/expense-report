@@ -4,6 +4,7 @@ import {
   GridReadyEvent,
   ValueFormatterParams,
 } from 'ag-grid-community';
+import { AMOUNT_PRECISION } from '@expense-report/expenses/shared';
 
 export const gridOptions: GridOptions = {
   columnDefs: [
@@ -23,7 +24,7 @@ export const gridOptions: GridOptions = {
       headerName: 'Amount',
       type: 'numericColumn',
       valueFormatter: ({ value }: ValueFormatterParams): string =>
-        formatCurrency(Number(value / 100), 'en', '$'),
+        formatCurrency(Number(value / AMOUNT_PRECISION), 'en', '$'),
     },
   ],
   defaultColDef: {
