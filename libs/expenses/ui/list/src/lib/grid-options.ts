@@ -1,17 +1,13 @@
 import { formatCurrency, formatDate } from '@angular/common';
-import { GridReadyEvent, ValueFormatterParams } from 'ag-grid-community';
+import {
+  GridOptions,
+  GridReadyEvent,
+  ValueFormatterParams,
+} from 'ag-grid-community';
 
-export const gridOptions = {
+export const gridOptions: GridOptions = {
   columnDefs: [
     { field: 'id', headerName: 'Id' }, // TODO: remove before release
-    {
-      field: 'amount',
-      headerName: 'Amount',
-      type: 'numericColumn',
-      valueFormatter: ({ value }: ValueFormatterParams): string =>
-        formatCurrency(Number(value / 100), 'en', '$'),
-    },
-    { field: 'category', headerName: 'Category' },
     {
       field: 'date',
       headerName: 'Date',
@@ -19,8 +15,16 @@ export const gridOptions = {
       valueFormatter: ({ value }: ValueFormatterParams): string =>
         formatDate(value, 'yyyy-MM-dd', 'en'),
     },
-    { field: 'description', headerName: 'Description' },
+    { field: 'category', headerName: 'Category' },
     { field: 'name', headerName: 'Name' },
+    { field: 'description', headerName: 'Description' },
+    {
+      field: 'amount',
+      headerName: 'Amount',
+      type: 'numericColumn',
+      valueFormatter: ({ value }: ValueFormatterParams): string =>
+        formatCurrency(Number(value / 100), 'en', '$'),
+    },
   ],
   defaultColDef: {
     filter: true,
