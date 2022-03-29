@@ -9,7 +9,8 @@
     "build": "nx build",
     "test": "nx test",
     "prepare": "husky install",
-    "lint-all": "nx run-many --all --target=lint"
+    "lint-all": "nx run-many --all --target=lint",
+    "test-all": "nx run-many --all --target=test"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"

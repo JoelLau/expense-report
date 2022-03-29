@@ -1,6 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ExpensesUiPageComponent } from './expense-ui-page.component';
+import { ExpensesUiPageComponent } from './expenses-ui-page.component';
 
 describe('ExpensesUiPageComponent', () => {
   let component: ExpensesUiPageComponent;
@@ -10,6 +11,7 @@ describe('ExpensesUiPageComponent', () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       declarations: [ExpensesUiPageComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
 
