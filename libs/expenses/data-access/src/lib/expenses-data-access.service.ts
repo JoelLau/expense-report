@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import {
+  Expense,
   ExpenseCreateInput,
   EXPENSES_API_ROUTE,
 } from '@expense-report/expenses/shared';
@@ -15,8 +17,8 @@ export class ExpensesDataAccessService {
     return this.http.post(`api/${EXPENSES_API_ROUTE}`, expenses);
   }
 
-  getExpenses() {
-    return this.http.get(`api/${EXPENSES_API_ROUTE}`);
+  getExpenses(): Observable<{ data: Expense[] }> {
+    return this.http.get<{ data: Expense[] }>(`api/${EXPENSES_API_ROUTE}`);
   }
 
   getExpense(expenseId: string) {
