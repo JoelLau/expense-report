@@ -14,10 +14,13 @@ describe('ExpensesApiController', () => {
     })
       .overrideProvider(ExpensesApiService)
       .useValue({
-        getExpenses: jest.fn(),
-        getExpense: jest.fn(),
         createExpenses: jest.fn(),
-        createExpense: jest.fn(),
+        getExpense: jest.fn(),
+        getExpenses: jest.fn(),
+        updateExpenses: jest.fn(),
+        updateExpense: jest.fn(),
+        deleteExpense: jest.fn(),
+        deleteExpenses: jest.fn(),
       })
       .compile();
 
