@@ -55,23 +55,6 @@ export class ExpensesApiController {
     return { data };
   }
 
-  @Patch()
-  async updateExpenses(@Body() body: ExpenseCreateInput[]) {
-    const ids = (body || []).map((item, index) => {
-      if (!item.id) {
-        throw new BadRequestException({
-          message: `Error on item ${index} - missing transaction line item id is ${item.id}`,
-          data: { item },
-        });
-      }
-      return item.id;
-    });
-    const before = await this.service.getExpenses(ids);
-    const updates = await this.service.updateExpenses(body);
-    const updatedItems = await this.service.getExpenses(ids);
-    return { before, count: updates.length, data: updatedItems };
-  }
-
   @Patch(':id')
   async updateExpense(
     @Param('id') id: string,
@@ -91,6 +74,23 @@ export class ExpensesApiController {
     const before = await this.service.getExpense(id);
     const updates = await this.service.updateExpenses([body]);
     const updatedItems = await this.service.getExpense(id);
+    return { before, count: updates.length, data: updatedItems };
+  }
+
+  @Patch()
+  async updateExpenses(@Body() body: ExpenseCreateInput[]) {
+    const ids = (body || []).map((item, index) => {
+      if (!item.id) {
+        throw new BadRequestException({
+          message: `Error on item ${index} - missing transaction line item id is ${item.id}`,
+          data: { item },
+        });
+      }
+      return item.id;
+    });
+    const before = await this.service.getExpenses(ids);
+    const updates = await this.service.updateExpenses(body);
+    const updatedItems = await this.service.getExpenses(ids);
     return { before, count: updates.length, data: updatedItems };
   }
 

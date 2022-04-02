@@ -17,8 +17,8 @@ describe('ExpensesApiController', () => {
         createExpenses: jest.fn(),
         getExpense: jest.fn(),
         getExpenses: jest.fn(),
-        updateExpenses: jest.fn(),
         updateExpense: jest.fn(),
+        updateExpenses: jest.fn(),
         deleteExpense: jest.fn(),
         deleteExpenses: jest.fn(),
       })
