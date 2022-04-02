@@ -33,33 +33,42 @@ describe('ExpensesApiController', () => {
     expect(controller).toBeTruthy();
   });
 
-  describe(`given 'createExpenses'`, () => {
-    describe(`when receiving multiple expenses`, () => {
-      it(`should call service.createExpense once`, async () => {
+  describe(`given 'createExpenses()'`, () => {
+    describe(`when called`, () => {
+      it(`should call service.createExpense() exactly once`, async () => {
         await controller.createExpenses(expenseInputs);
-        expect(service.createExpenses).toHaveBeenCalled();
+        expect(service.createExpenses).toBeCalledTimes(1);
       });
     });
   });
 
-  describe('getExpenses', () => {
-    it('should call service.getExpenses', async () => {
-      await controller.getExpenses(expenses[0].id);
-      expect(service.getExpenses).toHaveBeenCalled();
+  describe(`given 'getExpense()'`, () => {
+    const mockId = '1';
+
+    describe(`when called with an id: ${mockId}`, () => {
+      beforeEach(async () => {
+        jest.spyOn(service, 'getExpense').mockReturnValueOnce(
+          new Promise((resolve, _) => {
+            resolve(expenses[0]);
+          })
+        );
+        await controller.getExpense(mockId);
+      });
+
+      it(`should call service.getExpense() exactly once`, async () => {
+        expect(service.getExpense).toBeCalledTimes(1);
+      });
+
+      it(`should call service.getExpense() with same mock id: ${mockId}`, async () => {
+        expect(service.getExpense).toBeCalledWith(mockId);
+      });
     });
   });
 
-  describe('getExpense', () => {
-    it('should call service.getExpense', async () => {
-      const mockId = '1';
-
-      jest.spyOn(service, 'getExpense').mockReturnValueOnce(
-        new Promise((resolve, _) => {
-          resolve(expenses[0]);
-        })
-      );
-      await controller.getExpense(mockId);
-      expect(service.getExpense).toHaveBeenCalledWith(mockId);
+  describe(`given 'getExpenses'`, () => {
+    it('should call service.getExpenses', async () => {
+      await controller.getExpenses(expenses[0].id);
+      expect(service.getExpenses).toHaveBeenCalled();
     });
   });
 });

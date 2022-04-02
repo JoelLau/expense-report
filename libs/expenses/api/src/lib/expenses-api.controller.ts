@@ -33,17 +33,6 @@ export class ExpensesApiController {
     };
   }
 
-  @Get()
-  async getExpenses(
-    @Query('id') rawIds: string
-  ): Promise<{ data: Expense[] | null }> {
-    const ids = rawIds
-      ? (rawIds || '').split(',').map((rawId) => rawId.trim())
-      : [];
-    const data = await this.service.getExpenses(ids);
-    return { data };
-  }
-
   @Get(':id')
   async getExpense(@Param('id') id: string): Promise<{ data: Expense }> {
     const data = await this.service.getExpense(id);
@@ -52,6 +41,17 @@ export class ExpensesApiController {
         `Could not find any transaction line items with id: ${id}`
       );
     }
+    return { data };
+  }
+
+  @Get()
+  async getExpenses(
+    @Query('id') rawIds: string
+  ): Promise<{ data: Expense[] | null }> {
+    const ids = rawIds
+      ? (rawIds || '').split(',').map((rawId) => rawId.trim())
+      : [];
+    const data = await this.service.getExpenses(ids);
     return { data };
   }
 
