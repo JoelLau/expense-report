@@ -121,8 +121,28 @@ describe('ExpensesApiController', () => {
 
   describe(`given 'updateExpenses()'`, () => {
     describe('when called', () => {
-      xit('should call service.updateExpenses() exactly once', () => {
+      const body = expenses;
+
+      beforeEach(async () => {
+        jest.spyOn(service, 'getExpense').mockReturnValueOnce(
+          new Promise((resolve, _) => {
+            resolve(expenses[0]);
+          })
+        );
+        jest.spyOn(service, 'updateExpenses').mockReturnValueOnce(
+          new Promise((resolve, _) => {
+            resolve(expenses);
+          })
+        );
+        await controller.updateExpenses(body);
+      });
+
+      it('should call service.updateExpenses() exactly once', () => {
         expect(service.updateExpenses).toBeCalledTimes(1);
+      });
+
+      it('should call with body', () => {
+        expect(service.updateExpenses).toBeCalledWith(body);
       });
     });
   });
