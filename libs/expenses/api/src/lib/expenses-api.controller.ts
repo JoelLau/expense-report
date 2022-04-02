@@ -78,6 +78,12 @@ export class ExpensesApiController {
     return { before, count: updates.length, data: updatedItem };
   }
 
+  /**
+   * (unusual design, consider refactor if better design emerges)
+   * @param body represents a batch (array) of updates where:
+   *    - the `id` defines the expense item being updated
+   *    - each included field holds the new value for the expense item
+   */
   @Patch()
   async updateExpenses(@Body() body: ExpenseCreateInput[]) {
     const ids = (body || []).map((item, index) => {
