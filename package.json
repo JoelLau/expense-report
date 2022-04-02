@@ -9,7 +9,8 @@
     "build": "nx build",
     "test": "nx test",
     "prepare": "husky install",
-    "lint-all": "nx run-many --all --target=lint"
+    "lint-all": "nx run-many --all --target=lint",
+    "test-all": "nx run-many --all --target=test"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
@@ -29,6 +30,8 @@
     "@nestjs/platform-express": "^8.0.0",
     "@nrwl/angular": "13.9.5",
     "@prisma/client": "^3.11.1",
+    "ag-grid-angular": "^27.1.1",
+    "ag-grid-community": "^27.1.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.4.0",
     "tslib": "^2.0.0",
@@ -69,11 +72,15 @@
     "lint-staged": ">=10",
     "nx": "13.9.5",
     "prettier": "^2.5.1",
+    "prisma": "^3.11.1",
     "ts-jest": "27.0.5",
     "typescript": "~4.5.2"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,html,css,scss}": [
+    "*.{css,scss}": [
+      "nx format:write"
+    ],
+    "*.{js,jsx,ts,tsx,html}": [
       "nx format:write",
       "eslint --fix"
     ]

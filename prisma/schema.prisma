@@ -12,9 +12,9 @@ datasource db {
 
 model Expense {
   id          String   @id @default(cuid())
-  name        String
   date        DateTime
-  amount      Int
   category    String
-  description String
+  name        String?
+  description String?
+  amount      Int
 }

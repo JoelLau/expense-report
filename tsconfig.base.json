@@ -16,10 +16,23 @@
     "baseUrl": ".",
     "paths": {
       "@expense-report/expenses/api": ["libs/expenses/api/src/index.ts"],
+      "@expense-report/expenses/data-access": [
+        "libs/expenses/data-access/src/index.ts"
+      ],
       "@expense-report/expenses/shared": ["libs/expenses/shared/src/index.ts"],
+      "@expense-report/expenses/ui/list": [
+        "libs/expenses/ui/list/src/index.ts"
+      ],
+      "@expense-report/expenses/ui/page": [
+        "libs/expenses/ui/page/src/index.ts"
+      ],
       "@expense-report/shared/api/prisma": [
         "libs/shared/api/prisma/src/index.ts"
-      ]
+      ],
+      "@expense-report/shared/ng/common": [
+        "libs/shared/ng/common/src/index.ts"
+      ],
+      "@expense-report/shared/ng/core": ["libs/shared/ng/core/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
