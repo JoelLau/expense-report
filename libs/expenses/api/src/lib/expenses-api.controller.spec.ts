@@ -33,6 +33,15 @@ describe('ExpensesApiController', () => {
     expect(controller).toBeTruthy();
   });
 
+  describe('createExpenses', () => {
+    describe('given multiple expenses', () => {
+      it('should call service.createExpense', async () => {
+        await controller.createExpenses(expenseInputs);
+        expect(service.createExpenses).toHaveBeenCalled();
+      });
+    });
+  });
+
   describe('getExpenses', () => {
     it('should call service.getExpenses', async () => {
       await controller.getExpenses(expenses[0].id);
@@ -51,15 +60,6 @@ describe('ExpensesApiController', () => {
       );
       await controller.getExpense(mockId);
       expect(service.getExpense).toHaveBeenCalledWith(mockId);
-    });
-  });
-
-  describe('createExpenses', () => {
-    describe('given multiple expenses', () => {
-      it('should call service.createExpense', async () => {
-        await controller.createExpenses(expenseInputs);
-        expect(service.createExpenses).toHaveBeenCalled();
-      });
     });
   });
 });
