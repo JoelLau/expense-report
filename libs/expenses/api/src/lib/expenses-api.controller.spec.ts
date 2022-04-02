@@ -65,10 +65,26 @@ describe('ExpensesApiController', () => {
     });
   });
 
-  describe(`given 'getExpenses'`, () => {
-    it('should call service.getExpenses', async () => {
-      await controller.getExpenses(expenses[0].id);
-      expect(service.getExpenses).toHaveBeenCalled();
+  describe(`given 'getExpenses()'`, () => {
+    const mockIds = [
+      'cl1agau5o0000c80jnx9vmgq4',
+      'cl1agau5o0001c80jh76dw1wq',
+      'cl1agau5o0002c80jtem4aa74',
+    ];
+    const mockCommaSeparatedIds = mockIds.join(',');
+
+    describe(`when called with comma separated ids: ${mockCommaSeparatedIds}`, () => {
+      beforeEach(async () => {
+        await controller.getExpenses(mockCommaSeparatedIds);
+      });
+
+      it('should call service.getExpenses() exactly once', () => {
+        expect(service.getExpenses).toBeCalledTimes(1);
+      });
+
+      it('should call service.getExpenses() exactly once', () => {
+        expect(service.getExpenses).toBeCalledWith(mockIds);
+      });
     });
   });
 });
