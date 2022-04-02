@@ -13,16 +13,16 @@ export class ExpensesApiService {
     );
   }
 
+  getExpense(id: string): Promise<Expense | null> {
+    return this.prisma.expense.findUnique({ where: { id } });
+  }
+
   getExpenses(ids: string[] = []): Promise<Expense[] | null> {
     return ids.length <= 0
       ? this.prisma.expense.findMany()
       : this.prisma.expense.findMany({
           where: { id: { in: ids } },
         });
-  }
-
-  getExpense(id: string): Promise<Expense | null> {
-    return this.prisma.expense.findUnique({ where: { id } });
   }
 
   updateExpenses(expense: Prisma.ExpenseCreateInput[] = []) {

@@ -33,17 +33,6 @@ export class ExpensesApiController {
     };
   }
 
-  @Get()
-  async getExpenses(
-    @Query('id') rawIds: string
-  ): Promise<{ data: Expense[] | null }> {
-    const ids = rawIds
-      ? (rawIds || '').split(',').map((rawId) => rawId.trim())
-      : [];
-    const data = await this.service.getExpenses(ids);
-    return { data };
-  }
-
   @Get(':id')
   async getExpense(@Param('id') id: string): Promise<{ data: Expense }> {
     const data = await this.service.getExpense(id);
@@ -55,21 +44,15 @@ export class ExpensesApiController {
     return { data };
   }
 
-  @Patch()
-  async updateExpenses(@Body() body: ExpenseCreateInput[]) {
-    const ids = (body || []).map((item, index) => {
-      if (!item.id) {
-        throw new BadRequestException({
-          message: `Error on item ${index} - missing transaction line item id is ${item.id}`,
-          data: { item },
-        });
-      }
-      return item.id;
-    });
-    const before = await this.service.getExpenses(ids);
-    const updates = await this.service.updateExpenses(body);
-    const updatedItems = await this.service.getExpenses(ids);
-    return { before, count: updates.length, data: updatedItems };
+  @Get()
+  async getExpenses(
+    @Query('id') rawIds: string
+  ): Promise<{ data: Expense[] | null }> {
+    const ids = rawIds
+      ? (rawIds || '').split(',').map((rawId) => rawId.trim())
+      : [];
+    const data = await this.service.getExpenses(ids);
+    return { data };
   }
 
   @Patch(':id')
@@ -88,9 +71,33 @@ export class ExpensesApiController {
         uriId: id,
       });
     }
+
     const before = await this.service.getExpense(id);
     const updates = await this.service.updateExpenses([body]);
-    const updatedItems = await this.service.getExpense(id);
+    const updatedItem = await this.service.getExpense(id);
+    return { before, count: updates.length, data: updatedItem };
+  }
+
+  /**
+   * (unusual design, consider refactor if better design emerges)
+   * @param body represents a batch (array) of updates where:
+   *    - the `id` defines the expense item being updated
+   *    - each included field holds the new value for the expense item
+   */
+  @Patch()
+  async updateExpenses(@Body() body: ExpenseCreateInput[]) {
+    const ids = (body || []).map((item, index) => {
+      if (!item.id) {
+        throw new BadRequestException({
+          message: `Error on item ${index} - missing transaction line item id is ${item.id}`,
+          data: { item },
+        });
+      }
+      return item.id;
+    });
+    const before = await this.service.getExpenses(ids);
+    const updates = await this.service.updateExpenses(body);
+    const updatedItems = await this.service.getExpenses(ids);
     return { before, count: updates.length, data: updatedItems };
   }
 
