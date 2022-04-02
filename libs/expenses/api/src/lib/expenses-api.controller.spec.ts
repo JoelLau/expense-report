@@ -33,9 +33,9 @@ describe('ExpensesApiController', () => {
     expect(controller).toBeTruthy();
   });
 
-  describe('createExpenses', () => {
-    describe('given multiple expenses', () => {
-      it('should call service.createExpense', async () => {
+  describe(`given 'createExpenses'`, () => {
+    describe(`when receiving multiple expenses`, () => {
+      it(`should call service.createExpense once`, async () => {
         await controller.createExpenses(expenseInputs);
         expect(service.createExpenses).toHaveBeenCalled();
       });
