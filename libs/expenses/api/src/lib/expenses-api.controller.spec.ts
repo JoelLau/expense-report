@@ -45,7 +45,7 @@ describe('ExpensesApiController', () => {
   });
 
   describe(`given 'getExpense()'`, () => {
-    const mockId = '1';
+    const mockId = 'cl1agau5o0000c80jnx9vmgq4';
 
     describe(`when called with an id: ${mockId}`, () => {
       beforeEach(async () => {
@@ -84,7 +84,7 @@ describe('ExpensesApiController', () => {
         expect(service.getExpenses).toBeCalledTimes(1);
       });
 
-      it('should call service.getExpenses() exactly once', () => {
+      it(`should call service.getExpenses() mockIds: ${mockIds}`, () => {
         expect(service.getExpenses).toBeCalledWith(mockIds);
       });
     });
@@ -148,17 +148,62 @@ describe('ExpensesApiController', () => {
   });
 
   describe(`given 'deleteExpense()'`, () => {
-    describe('when called', () => {
-      xit('should call service.deleteExpense() exactly once', () => {
+    const mockId = 'cl1agau5o0000c80jnx9vmgq4';
+
+    describe(`when called with ${mockId}`, () => {
+      beforeEach(async () => {
+        jest.spyOn(service, 'getExpense').mockReturnValueOnce(
+          new Promise((resolve, _) => {
+            resolve(expenses[0]);
+          })
+        );
+        jest.spyOn(service, 'deleteExpenses').mockReturnValueOnce(
+          new Promise((resolve, _) => {
+            resolve({ count: 1 });
+          })
+        );
+        await controller.deleteExpense(mockId);
+      });
+
+      it('should call service.deleteExpenses() exactly once', () => {
         expect(service.deleteExpenses).toBeCalledTimes(1);
+      });
+
+      it(`should call service.deleteExpenses() with an array with only mockId: ${mockId}`, () => {
+        expect(service.deleteExpenses).toBeCalledWith([mockId]);
       });
     });
   });
 
   describe(`given 'deleteExpenses()'`, () => {
+    const mockIds = [
+      'cl1agau5o0000c80jnx9vmgq4',
+      'cl1agau5o0001c80jh76dw1wq',
+      'cl1agau5o0002c80jtem4aa74',
+    ];
+    const mockCommaSeparatedIds = mockIds.join(',');
+
     describe('when called', () => {
-      xit('should call service.deleteExpenses() exactly once', () => {
+      beforeEach(async () => {
+        jest.spyOn(service, 'getExpenses').mockReturnValueOnce(
+          new Promise((resolve, _) => {
+            resolve(expenses);
+          })
+        );
+        jest.spyOn(service, 'deleteExpenses').mockReturnValueOnce(
+          new Promise((resolve, _) => {
+            resolve({ count: mockIds.length });
+          })
+        );
+        await controller.deleteExpenses(mockCommaSeparatedIds);
+      });
+
+      it('should call service.deleteExpenses() exactly once', () => {
         expect(service.deleteExpenses).toBeCalledTimes(1);
+      });
+
+      it(`should call service.deleteExpenses() with mockIds: ${mockIds}`, () => {
+        expect(service.deleteExpenses).toBeCalledWith(mockIds);
       });
     });
   });
