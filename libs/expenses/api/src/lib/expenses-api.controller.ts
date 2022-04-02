@@ -71,10 +71,11 @@ export class ExpensesApiController {
         uriId: id,
       });
     }
+
     const before = await this.service.getExpense(id);
     const updates = await this.service.updateExpenses([body]);
-    const updatedItems = await this.service.getExpense(id);
-    return { before, count: updates.length, data: updatedItems };
+    const updatedItem = await this.service.getExpense(id);
+    return { before, count: updates.length, data: updatedItem };
   }
 
   @Patch()

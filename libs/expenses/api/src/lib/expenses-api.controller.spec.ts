@@ -17,7 +17,6 @@ describe('ExpensesApiController', () => {
         createExpenses: jest.fn(),
         getExpense: jest.fn(),
         getExpenses: jest.fn(),
-        updateExpense: jest.fn(),
         updateExpenses: jest.fn(),
         deleteExpense: jest.fn(),
         deleteExpenses: jest.fn(),
@@ -87,6 +86,59 @@ describe('ExpensesApiController', () => {
 
       it('should call service.getExpenses() exactly once', () => {
         expect(service.getExpenses).toBeCalledWith(mockIds);
+      });
+    });
+  });
+
+  describe(`given 'updateExpense()'`, () => {
+    describe('when called with id in query, and body without id', () => {
+      const id = 'cl1agau5o0000c80jnx9vmgq4';
+      const body = expenseInputs[0];
+
+      beforeEach(async () => {
+        jest.spyOn(service, 'getExpense').mockReturnValueOnce(
+          new Promise((resolve, _) => {
+            resolve(expenses[0]);
+          })
+        );
+        jest.spyOn(service, 'updateExpenses').mockReturnValueOnce(
+          new Promise((resolve, _) => {
+            resolve(expenses);
+          })
+        );
+        await controller.updateExpense(id, body);
+      });
+
+      it('should call service.updateExpenses() exactly once', () => {
+        expect(service.updateExpenses).toBeCalledTimes(1);
+      });
+
+      it('should call service.updateExpenses() with a body that with id', () => {
+        expect(service.updateExpenses).toBeCalledWith([{ id, ...body }]);
+      });
+    });
+  });
+
+  describe(`given 'updateExpenses()'`, () => {
+    describe('when called', () => {
+      xit('should call service.updateExpenses() exactly once', () => {
+        expect(service.updateExpenses).toBeCalledTimes(1);
+      });
+    });
+  });
+
+  describe(`given 'deleteExpense()'`, () => {
+    describe('when called', () => {
+      xit('should call service.deleteExpense() exactly once', () => {
+        expect(service.deleteExpenses).toBeCalledTimes(1);
+      });
+    });
+  });
+
+  describe(`given 'deleteExpenses()'`, () => {
+    describe('when called', () => {
+      xit('should call service.deleteExpenses() exactly once', () => {
+        expect(service.deleteExpenses).toBeCalledTimes(1);
       });
     });
   });
