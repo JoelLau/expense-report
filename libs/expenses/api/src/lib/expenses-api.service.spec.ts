@@ -15,9 +15,10 @@ describe(`given 'ExpensesApiService()'`, () => {
       .useValue({
         $transaction: jest.fn(),
         expense: {
+          create: jest.fn(),
+          deleteMany: jest.fn(),
           findMany: jest.fn(),
           findUnique: jest.fn(),
-          create: jest.fn(),
         },
       })
       .compile();
@@ -26,7 +27,7 @@ describe(`given 'ExpensesApiService()'`, () => {
     prisma = module.get(SharedApiPrismaService);
   });
 
-  beforeEach(() => {
+  afterEach(() => {
     jest.clearAllMocks();
   });
 
@@ -35,35 +36,83 @@ describe(`given 'ExpensesApiService()'`, () => {
   });
 
   describe(`given 'createExpenses()'`, () => {
-    describe('when called', () => {
-      it(`should call prisma.expense.create`, async () => {
-        await service.createExpenses(expenseInputs);
-        expect(prisma.expense.create).toHaveBeenCalledTimes(
-          expenseInputs.length
-        );
+    const mockData = expenseInputs;
+
+    describe('when called be called with mockData', () => {
+      beforeEach(async () => {
+        await service.createExpenses(mockData);
       });
 
-      it(`should call prisma.$transaction`, async () => {
-        await service.createExpenses(expenseInputs);
+      it(`should be a transaction`, async () => {
         expect(prisma.$transaction).toHaveBeenCalled();
       });
-    });
-  });
 
-  describe(`given 'getExpenses()'`, () => {
-    describe('when called', () => {
-      it('should call prisma.expense.findMany', async () => {
-        await service.getExpenses();
-        expect(prisma.expense.findMany).toHaveBeenCalled();
+      it(`should call prisma.expense.create (mockData.length) times`, async () => {
+        expect(prisma.expense.create).toBeCalledTimes(mockData.length);
       });
     });
   });
 
   describe(`given 'getExpense()'`, () => {
+    const mockId = 'cl1agau5o0000c80jnx9vmgq4';
+
+    describe(`when called with mockId: ${mockId}`, () => {
+      beforeEach(async () => {
+        await service.getExpense(mockId);
+      });
+
+      it('should call prisma.expense.findUnique exactly once', async () => {
+        expect(prisma.expense.findUnique).toBeCalledTimes(1);
+      });
+    });
+  });
+
+  describe(`given 'getExpenses()'`, () => {
+    describe('when called with no ids', () => {
+      beforeEach(async () => {
+        await service.getExpenses();
+      });
+
+      it('should call prisma.expense.findMany exactly once', async () => {
+        expect(prisma.expense.findMany).toBeCalledTimes(1);
+      });
+
+      it('should call prisma.expense.findMany with no arguments', async () => {
+        expect(prisma.expense.findMany).toBeCalledWith();
+      });
+    });
+
+    const mockIds = [
+      'cl1agau5o0000c80jnx9vmgq4',
+      'cl1agau5o0001c80jh76dw1wq',
+      'cl1agau5o0002c80jtem4aa74',
+    ];
+
+    describe('when called with multiple ids', () => {
+      beforeEach(async () => {
+        await service.getExpenses(mockIds);
+      });
+
+      it('should call prisma.expense.findMany exactly once', async () => {
+        expect(prisma.expense.findMany).toBeCalledTimes(1);
+      });
+    });
+  });
+
+  describe(`given 'deleteExpenses()'`, () => {
+    const mockIds = [
+      'cl1agau5o0000c80jnx9vmgq4',
+      'cl1agau5o0001c80jh76dw1wq',
+      'cl1agau5o0002c80jtem4aa74',
+    ];
+
     describe('when called', () => {
-      it('should call prisma.expense.findUnique', async () => {
-        await service.getExpense('5');
-        expect(prisma.expense.findUnique).toHaveBeenCalled();
+      beforeEach(async () => {
+        await service.deleteExpenses(mockIds);
+      });
+
+      it('should call prisma.expense.findMany exactly once', async () => {
+        expect(prisma.expense.deleteMany).toBeCalledTimes(1);
       });
     });
   });
