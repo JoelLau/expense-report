@@ -153,22 +153,25 @@ describe('ExpensesApiController', () => {
   });
 
   describe(`given 'updateExpenses()'`, () => {
-    describe('when called', () => {
+    beforeEach(() => {
+      jest.spyOn(service, 'getExpense').mockReturnValueOnce(
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        new Promise((resolve, _) => {
+          resolve(expenses[0]);
+        })
+      );
+      jest.spyOn(service, 'updateExpenses').mockReturnValueOnce(
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        new Promise((resolve, _) => {
+          resolve(expenses);
+        })
+      );
+    });
+
+    describe('when called with body that all have idss', () => {
       const body = expenses;
 
       beforeEach(async () => {
-        jest.spyOn(service, 'getExpense').mockReturnValueOnce(
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          new Promise((resolve, _) => {
-            resolve(expenses[0]);
-          })
-        );
-        jest.spyOn(service, 'updateExpenses').mockReturnValueOnce(
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          new Promise((resolve, _) => {
-            resolve(expenses);
-          })
-        );
         await controller.updateExpenses(body);
       });
 
@@ -178,6 +181,18 @@ describe('ExpensesApiController', () => {
 
       it('should call with body', () => {
         expect(service.updateExpenses).toBeCalledWith(body);
+      });
+    });
+
+    describe('when called with body that is missing ids', () => {
+      const body = expenseInputs;
+
+      it('should throw', async () => {
+        try {
+          await controller.updateExpenses(body);
+        } catch (error) {
+          expect(error).toBeInstanceOf(BadRequestException);
+        }
       });
     });
   });
