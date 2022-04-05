@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
-import { AgGridModule } from 'ag-grid-angular';
 import { ExpensesUiListComponent } from './expenses-ui-list.component';
 import { SharedNgCommonModule } from '@expense-report/shared/ng/common';
 
 @NgModule({
-  imports: [SharedNgCommonModule, AgGridModule.withComponents([])],
+  imports: [SharedNgCommonModule],
   declarations: [ExpensesUiListComponent],
-  exports: [ExpensesUiListComponent, AgGridModule],
+  exports: [ExpensesUiListComponent],
 })
 export class ExpensesUiListModule {}
