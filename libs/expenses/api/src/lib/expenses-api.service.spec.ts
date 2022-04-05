@@ -1,7 +1,8 @@
 import { Test } from '@nestjs/testing';
+import { BadRequestException } from '@nestjs/common';
 import { ExpensesApiService } from './expenses-api.service';
 import { SharedApiPrismaService } from '@expense-report/shared/api/prisma';
-import { expenseInputs } from '@expense-report/expenses/shared';
+import { expenseInputs, expenses } from '@expense-report/expenses/shared';
 
 describe(`given 'ExpensesApiService()'`, () => {
   let service: ExpensesApiService;
@@ -19,6 +20,7 @@ describe(`given 'ExpensesApiService()'`, () => {
           deleteMany: jest.fn(),
           findMany: jest.fn(),
           findUnique: jest.fn(),
+          update: jest.fn(),
         },
       })
       .compile();
@@ -95,6 +97,36 @@ describe(`given 'ExpensesApiService()'`, () => {
 
       it('should call prisma.expense.findMany exactly once', async () => {
         expect(prisma.expense.findMany).toBeCalledTimes(1);
+      });
+    });
+  });
+
+  describe(`given 'updateExpenses()'`, () => {
+    const validUpdates = expenses;
+
+    describe('when called with valid data', () => {
+      beforeEach(async () => {
+        await service.updateExpenses(validUpdates);
+      });
+
+      it('should call prisma.transaction$ exactly once', async () => {
+        expect(prisma.$transaction).toBeCalledTimes(1);
+      });
+
+      it('should call prisma.transaction$ as many times as arguments passed', async () => {
+        expect(prisma.expense.update).toBeCalledTimes(validUpdates.length);
+      });
+    });
+
+    const invalidUpdates = expenseInputs;
+
+    describe('when called with invalid data', () => {
+      it('should throw', async () => {
+        try {
+          await service.updateExpenses(invalidUpdates);
+        } catch (error) {
+          expect(error).toBeInstanceOf(BadRequestException);
+        }
       });
     });
   });
