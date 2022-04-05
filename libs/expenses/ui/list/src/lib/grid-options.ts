@@ -27,6 +27,10 @@ export const gridOptions: GridOptions = {
       valueFormatter: ({ value }: ValueFormatterParams): string =>
         formatCurrency(Number(value / AMOUNT_PRECISION), 'en', '$'),
     },
+    {
+      sortable: false,
+      filter: false,
+    },
   ],
   defaultColDef: {
     filter: true,
