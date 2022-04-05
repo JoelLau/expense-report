@@ -1,4 +1,6 @@
 import { Test } from '@nestjs/testing';
+import { _ } from 'ag-grid-community';
+import { BadRequestException } from '@nestjs/common';
 import { ExpensesApiController } from './expenses-api.controller';
 import { ExpensesApiService } from './expenses-api.service';
 import { expenseInputs, expenses } from '@expense-report/expenses/shared';
@@ -92,6 +94,34 @@ describe('ExpensesApiController', () => {
   });
 
   describe(`given 'updateExpense()'`, () => {
+    describe('when called with different ids in query and body', () => {
+      const { id } = expenses[0];
+      const body = expenses[1];
+
+      beforeEach(() => {
+        jest.spyOn(service, 'getExpense').mockReturnValueOnce(
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          new Promise((resolve, _) => {
+            resolve(expenses[0]);
+          })
+        );
+        jest.spyOn(service, 'updateExpenses').mockReturnValueOnce(
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          new Promise((resolve, _) => {
+            resolve(expenses);
+          })
+        );
+      });
+
+      it('should throw', async () => {
+        try {
+          await controller.updateExpense(id, body);
+        } catch (error) {
+          expect(error).toBeInstanceOf(BadRequestException);
+        }
+      });
+    });
+
     describe('when called with id in query, and body without id', () => {
       const id = 'cl1agau5o0000c80jnx9vmgq4';
       const body = expenseInputs[0];
