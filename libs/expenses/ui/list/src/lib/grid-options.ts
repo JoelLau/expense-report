@@ -2,6 +2,7 @@ import { formatCurrency, formatDate } from '@angular/common';
 import {
   GridOptions,
   GridReadyEvent,
+  GridSizeChangedEvent,
   ValueFormatterParams,
 } from 'ag-grid-community';
 import { AMOUNT_PRECISION } from '@expense-report/expenses/shared';
@@ -40,6 +41,9 @@ export const gridOptions: GridOptions = {
     },
   },
   onGridReady: ({ api }: GridReadyEvent): void => {
+    api.sizeColumnsToFit();
+  },
+  onGridSizeChanged: ({ api }: GridSizeChangedEvent): void => {
     api.sizeColumnsToFit();
   },
 };
