@@ -47,9 +47,10 @@ describe('ExpensesApiController', () => {
   describe(`given 'getExpense()'`, () => {
     const mockId = 'cl1agau5o0000c80jnx9vmgq4';
 
-    describe(`when called with an id: ${mockId}`, () => {
+    describe(`when called with a valid id: ${mockId}`, () => {
       beforeEach(async () => {
         jest.spyOn(service, 'getExpense').mockReturnValueOnce(
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           new Promise((resolve, _) => {
             resolve(expenses[0]);
           })
@@ -97,11 +98,13 @@ describe('ExpensesApiController', () => {
 
       beforeEach(async () => {
         jest.spyOn(service, 'getExpense').mockReturnValueOnce(
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           new Promise((resolve, _) => {
             resolve(expenses[0]);
           })
         );
         jest.spyOn(service, 'updateExpenses').mockReturnValueOnce(
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           new Promise((resolve, _) => {
             resolve(expenses);
           })
@@ -125,11 +128,13 @@ describe('ExpensesApiController', () => {
 
       beforeEach(async () => {
         jest.spyOn(service, 'getExpense').mockReturnValueOnce(
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           new Promise((resolve, _) => {
             resolve(expenses[0]);
           })
         );
         jest.spyOn(service, 'updateExpenses').mockReturnValueOnce(
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           new Promise((resolve, _) => {
             resolve(expenses);
           })
@@ -153,11 +158,13 @@ describe('ExpensesApiController', () => {
     describe(`when called with ${mockId}`, () => {
       beforeEach(async () => {
         jest.spyOn(service, 'getExpense').mockReturnValueOnce(
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           new Promise((resolve, _) => {
             resolve(expenses[0]);
           })
         );
         jest.spyOn(service, 'deleteExpenses').mockReturnValueOnce(
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           new Promise((resolve, _) => {
             resolve({ count: 1 });
           })
@@ -186,11 +193,13 @@ describe('ExpensesApiController', () => {
     describe('when called', () => {
       beforeEach(async () => {
         jest.spyOn(service, 'getExpenses').mockReturnValueOnce(
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           new Promise((resolve, _) => {
             resolve(expenses);
           })
         );
         jest.spyOn(service, 'deleteExpenses').mockReturnValueOnce(
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           new Promise((resolve, _) => {
             resolve({ count: mockIds.length });
           })
