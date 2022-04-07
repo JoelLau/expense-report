@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/shared/ng/grid",
+  "sourceRoot": "libs/shared/ng/grid/src",
+  "prefix": "expense-report",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/ng/grid"],
+      "options": {
+        "jestConfig": "libs/shared/ng/grid/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/ng/grid/src/**/*.ts",
+          "libs/shared/ng/grid/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

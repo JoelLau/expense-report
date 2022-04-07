@@ -6,6 +6,7 @@ import {
   ValueFormatterParams,
 } from 'ag-grid-community';
 import { AMOUNT_PRECISION } from '@expense-report/expenses/shared';
+import { ActionsComponent } from '@expense-report/shared/ng/grid';
 
 export const gridOptions: GridOptions = {
   columnDefs: [
@@ -27,6 +28,9 @@ export const gridOptions: GridOptions = {
       valueFormatter: ({ value }: ValueFormatterParams): string =>
         formatCurrency(Number(value / AMOUNT_PRECISION), 'en', '$'),
     },
+    {
+      type: 'actionColumn',
+    },
   ],
   defaultColDef: {
     filter: true,
@@ -38,6 +42,12 @@ export const gridOptions: GridOptions = {
     dateColumn: {
       filter: 'agDateColumnFilter',
       suppressMenu: true,
+    },
+    actionColumn: {
+      sortable: false,
+      filter: false,
+      cellRenderer: ActionsComponent,
+      type: 'rightAligned',
     },
   },
   onGridReady: ({ api }: GridReadyEvent): void => {
