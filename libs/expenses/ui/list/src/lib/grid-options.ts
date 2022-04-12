@@ -3,6 +3,7 @@ import {
   GridOptions,
   GridReadyEvent,
   GridSizeChangedEvent,
+  ITooltipParams,
   ValueFormatterParams,
 } from 'ag-grid-community';
 import { AMOUNT_PRECISION } from '@expense-report/expenses/shared';
@@ -37,6 +38,9 @@ export const gridOptions: GridOptions = {
     sortable: true,
     resizable: true,
     pivot: true,
+    tooltipValueGetter: ({ value, valueFormatted }: ITooltipParams) => {
+      return valueFormatted || value;
+    },
   },
   columnTypes: {
     dateColumn: {
