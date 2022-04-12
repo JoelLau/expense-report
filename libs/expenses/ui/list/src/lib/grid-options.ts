@@ -11,20 +11,18 @@ import { ActionsComponent } from '@expense-report/shared/ng/grid';
 
 export const gridOptions: GridOptions = {
   columnDefs: [
-    { field: 'id', headerName: 'Id' }, // TODO: remove before release
+    { field: 'id' }, // TODO: remove before release
     {
       field: 'date',
-      headerName: 'Date',
       type: 'dateColumn',
       valueFormatter: ({ value }: ValueFormatterParams): string =>
         formatDate(value, 'yyyy-MM-dd', 'en'),
     },
-    { field: 'category', headerName: 'Category' },
-    { field: 'name', headerName: 'Name' },
-    { field: 'description', headerName: 'Description' },
+    { field: 'category' },
+    { field: 'name' },
+    { field: 'description' },
     {
       field: 'amount',
-      headerName: 'Amount',
       type: 'numericColumn',
       valueFormatter: ({ value }: ValueFormatterParams): string =>
         formatCurrency(Number(value / AMOUNT_PRECISION), 'en', '$'),
