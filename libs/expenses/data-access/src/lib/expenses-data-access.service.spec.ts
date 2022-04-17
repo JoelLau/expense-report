@@ -10,7 +10,7 @@ import {
   GLOBAL_API_PREFIX,
 } from '@expense-report/expenses/shared';
 
-describe('given ExpensesDataAccessService()', () => {
+describe('ExpensesDataAccessService', () => {
   let service: ExpensesDataAccessService;
   let httpTestingController: HttpTestingController;
 

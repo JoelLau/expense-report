@@ -4,7 +4,7 @@ import { ExpensesApiService } from './expenses-api.service';
 import { SharedApiPrismaService } from '@expense-report/shared/api/prisma';
 import { expenseInputs, expenses } from '@expense-report/expenses/shared';
 
-describe(`given 'ExpensesApiService()'`, () => {
+describe(`ExpensesApiService'`, () => {
   let service: ExpensesApiService;
   let prisma: SharedApiPrismaService;
 
