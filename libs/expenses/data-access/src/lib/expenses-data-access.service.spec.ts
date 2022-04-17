@@ -114,15 +114,31 @@ describe('ExpensesDataAccessService', () => {
 
   describe('given updateExpenses()', () => {
     const verb = 'PATCH';
+    const expenseUpdates = expenses;
+    const url = `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}`;
 
-    it(`should call ${verb} /${EXPENSES_API_ROUTE}`, () => {
-      service.updateExpenses(expenses).subscribe();
+    /**
+     * NOTE: Must be run in order
+     */
+    describe('when called with valid updates', () => {
+      let request: TestRequest;
 
-      const request = httpTestingController.expectOne(
-        `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}`
-      );
-      expect(request.request.method).toBe(verb);
-      request.flush([]);
+      beforeEach(() => {
+        service.updateExpenses(expenseUpdates).subscribe();
+      });
+
+      it(`make request to: /${url}`, () => {
+        request = httpTestingController.expectOne(url);
+        request.flush({ data: expenses });
+      });
+
+      it(`is a ${verb} request`, () => {
+        expect(request.request.method).toBe(verb);
+      });
+
+      it('sends expense updates as part of request body', () => {
+        expect(request.request.body).toBe(expenseUpdates);
+      });
     });
   });
 
