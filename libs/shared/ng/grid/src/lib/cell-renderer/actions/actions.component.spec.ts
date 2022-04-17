@@ -1,3 +1,4 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActionsComponent } from './actions.component';
 
@@ -8,6 +9,7 @@ describe('ActionsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ActionsComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
 

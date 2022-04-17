@@ -1,4 +1,6 @@
-<button type="button" (click)="refreshButtonClick()">Refresh</button>
+<expense-report-button (click)="refreshButtonClick()"
+  >Refresh</expense-report-button
+>
 
 <expense-report-expenses-ui-list
   [rowData]="expenses$ | async"
