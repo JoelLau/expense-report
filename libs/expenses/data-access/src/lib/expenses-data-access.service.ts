@@ -5,6 +5,7 @@ import {
   Expense,
   ExpenseCreateInput,
   EXPENSES_API_ROUTE,
+  GLOBAL_API_PREFIX,
 } from '@expense-report/expenses/shared';
 
 @Injectable({
@@ -14,32 +15,47 @@ export class ExpensesDataAccessService {
   constructor(private http: HttpClient) {}
 
   createExpenses(expenses: ExpenseCreateInput[]) {
-    return this.http.post(`api/${EXPENSES_API_ROUTE}`, expenses);
+    return this.http.post(
+      `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}`,
+      expenses
+    );
   }
 
   getExpenses(): Observable<{ data: Expense[] }> {
-    return this.http.get<{ data: Expense[] }>(`api/${EXPENSES_API_ROUTE}`);
+    return this.http.get<{ data: Expense[] }>(
+      `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}`
+    );
   }
 
   getExpense(expenseId: string) {
-    return this.http.get(`api/${EXPENSES_API_ROUTE}/${expenseId}`);
+    return this.http.get(
+      `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}/${expenseId}`
+    );
   }
 
   updateExpenses(expenses: ExpenseCreateInput[]) {
-    return this.http.patch(`api/${EXPENSES_API_ROUTE}`, expenses);
+    return this.http.patch(
+      `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}`,
+      expenses
+    );
   }
 
   updateExpense(expenseId: string, expense: ExpenseCreateInput) {
-    return this.http.patch(`api/${EXPENSES_API_ROUTE}/${expenseId}`, expense);
+    return this.http.patch(
+      `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}/${expenseId}`,
+      expense
+    );
   }
 
   deleteExpense(expenseId: string) {
-    return this.http.delete(`api/${EXPENSES_API_ROUTE}/${expenseId}`);
+    return this.http.delete(
+      `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}/${expenseId}`
+    );
   }
 
   deleteExpenses(expenseIds: string[]) {
     return this.http.delete(
-      `api/${EXPENSES_API_ROUTE}/${expenseIds.join(',')}`
+      `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}/${expenseIds.join(',')}`
     );
   }
 }
