@@ -6,7 +6,7 @@ import { TestBed } from '@angular/core/testing';
 import { ExpensesDataAccessService } from './expenses-data-access.service';
 import { expenses, EXPENSES_API_ROUTE } from '@expense-report/expenses/shared';
 
-describe('ExpensesDataAccessService', () => {
+describe('given ExpensesDataAccessService()', () => {
   let service: ExpensesDataAccessService;
   let httpTestingController: HttpTestingController;
 
@@ -27,7 +27,7 @@ describe('ExpensesDataAccessService', () => {
     expect(service).toBeTruthy();
   });
 
-  describe('createExpenses', () => {
+  describe('given createExpenses()', () => {
     const verb = 'POST';
 
     it(`should call ${verb} /${EXPENSES_API_ROUTE}`, () => {
@@ -39,7 +39,7 @@ describe('ExpensesDataAccessService', () => {
     });
   });
 
-  describe('getExpense', () => {
+  describe('given getExpense()', () => {
     const verb = 'GET';
 
     it(`should call ${verb} /${EXPENSES_API_ROUTE}`, () => {
@@ -54,7 +54,7 @@ describe('ExpensesDataAccessService', () => {
     });
   });
 
-  describe('updateExpenses', () => {
+  describe('given updateExpenses()', () => {
     const verb = 'PATCH';
 
     it(`should call ${verb} /${EXPENSES_API_ROUTE}`, () => {
@@ -66,7 +66,7 @@ describe('ExpensesDataAccessService', () => {
     });
   });
 
-  describe('updateExpense', () => {
+  describe('given updateExpense()', () => {
     const verb = 'PATCH';
 
     it(`should call ${verb} /${EXPENSES_API_ROUTE}`, () => {
@@ -81,7 +81,7 @@ describe('ExpensesDataAccessService', () => {
     });
   });
 
-  describe('deleteExpense', () => {
+  describe('given deleteExpense()', () => {
     const verb = 'DELETE';
 
     it(`should call ${verb} /${EXPENSES_API_ROUTE}`, () => {
@@ -96,7 +96,7 @@ describe('ExpensesDataAccessService', () => {
     });
   });
 
-  describe('deleteExpenses', () => {
+  describe('given deleteExpenses()', () => {
     const verb = 'DELETE';
 
     it(`should call ${verb} /${EXPENSES_API_ROUTE}`, () => {
