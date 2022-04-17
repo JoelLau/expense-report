@@ -173,35 +173,57 @@ describe('ExpensesDataAccessService', () => {
     });
   });
 
-  describe('given deleteExpense()', () => {
+  describe('given deleteExpenses()', () => {
     const verb = 'DELETE';
+    const expenseIds = expenses.map(({ id }) => id);
+    const commaSeparatedIds =
+      'cl1agau5o0000c80jnx9vmgq4%2Ccl1agau5o0001c80jh76dw1wq%2Ccl1agau5o0002c80jtem4aa74';
+    const url = `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}?ids=${commaSeparatedIds}`;
 
-    it(`should call ${verb} /${EXPENSES_API_ROUTE}`, () => {
-      const expense = expenses[0];
-      service.deleteExpense(expense.id).subscribe();
+    /**
+     * NOTE: Must be run in order
+     */
+    describe('when called with valid ids', () => {
+      let request: TestRequest;
 
-      const request = httpTestingController.expectOne(
-        `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}/${expense.id}`
-      );
-      expect(request.request.method).toBe(verb);
-      request.flush({ data: expenses });
+      beforeEach(() => {
+        service.deleteExpenses(expenseIds).subscribe();
+      });
+
+      it(`make request to: /${url}`, () => {
+        request = httpTestingController.expectOne(url);
+        request.flush({ data: expenses });
+      });
+
+      it(`is a ${verb} request`, () => {
+        expect(request.request.method).toBe(verb);
+      });
     });
   });
 
   describe('given deleteExpense()', () => {
     const verb = 'DELETE';
+    const { id: expenseId } = expenses[0];
+    const url = `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}/${expenseId}`;
 
-    it(`should call ${verb} /${EXPENSES_API_ROUTE}`, () => {
-      const expenseIds = expenses.map(({ id }) => id);
-      const expenseIdsCommaSeparated = expenseIds.join(',');
+    /**
+     * NOTE: Must be run in order
+     */
+    describe('when called with valid ids', () => {
+      let request: TestRequest;
 
-      service.deleteExpenses(expenseIds).subscribe();
+      beforeEach(() => {
+        service.deleteExpense(expenseId).subscribe();
+      });
 
-      const request = httpTestingController.expectOne(
-        `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}/${expenseIdsCommaSeparated}`
-      );
-      expect(request.request.method).toBe(verb);
-      request.flush({ data: expenses });
+      it(`make request to: /${url}`, () => {
+        request = httpTestingController.expectOne(url);
+        request.flush({ data: expenses });
+      });
+
+      it(`is a ${verb} request`, () => {
+        expect(request.request.method).toBe(verb);
+      });
     });
   });
 });

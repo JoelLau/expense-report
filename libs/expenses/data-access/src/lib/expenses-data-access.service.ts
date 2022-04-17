@@ -1,3 +1,4 @@
+import { URLSearchParams } from 'url';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -47,15 +48,17 @@ export class ExpensesDataAccessService {
     );
   }
 
-  deleteExpense(expenseId: string) {
+  deleteExpenses(expenseIds: string[]) {
+    const searchParams = new URLSearchParams([['ids', expenseIds.join(',')]]);
+
     return this.http.delete(
-      `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}/${expenseId}`
+      `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}?${searchParams}`
     );
   }
 
-  deleteExpenses(expenseIds: string[]) {
+  deleteExpense(expenseId: string) {
     return this.http.delete(
-      `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}/${expenseIds.join(',')}`
+      `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}/${expenseId}`
     );
   }
 }
