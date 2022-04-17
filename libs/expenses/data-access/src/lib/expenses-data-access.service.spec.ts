@@ -59,6 +59,31 @@ describe('ExpensesDataAccessService', () => {
     });
   });
 
+  describe('given getExpenses()', () => {
+    const verb = 'GET';
+    const url = `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}`;
+
+    /**
+     * NOTE: Must be run in order
+     */
+    describe('when called', () => {
+      let request: TestRequest;
+
+      beforeEach(() => {
+        service.getExpenses().subscribe();
+      });
+
+      it(`make request to: /${url}`, () => {
+        request = httpTestingController.expectOne(url);
+        request.flush({ data: expenses });
+      });
+
+      it(`is a ${verb} request`, () => {
+        expect(request.request.method).toBe(verb);
+      });
+    });
+  });
+
   describe('given updateExpenses()', () => {
     const verb = 'PATCH';
 
