@@ -4,7 +4,11 @@ import {
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { ExpensesDataAccessService } from './expenses-data-access.service';
-import { expenses, EXPENSES_API_ROUTE } from '@expense-report/expenses/shared';
+import {
+  expenses,
+  EXPENSES_API_ROUTE,
+  GLOBAL_API_PREFIX,
+} from '@expense-report/expenses/shared';
 
 describe('given ExpensesDataAccessService()', () => {
   let service: ExpensesDataAccessService;
@@ -33,7 +37,9 @@ describe('given ExpensesDataAccessService()', () => {
     it(`should call ${verb} /${EXPENSES_API_ROUTE}`, () => {
       service.createExpenses(expenses).subscribe();
 
-      const request = httpTestingController.expectOne(`${EXPENSES_API_ROUTE}`);
+      const request = httpTestingController.expectOne(
+        `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}`
+      );
       expect(request.request.method).toBe(verb);
       request.flush({ data: expenses });
     });
@@ -47,7 +53,7 @@ describe('given ExpensesDataAccessService()', () => {
       service.getExpense(expense.id).subscribe();
 
       const request = httpTestingController.expectOne(
-        `${EXPENSES_API_ROUTE}/${expense.id}`
+        `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}/${expense.id}`
       );
       expect(request.request.method).toBe(verb);
       request.flush({ data: expenses });
@@ -60,7 +66,9 @@ describe('given ExpensesDataAccessService()', () => {
     it(`should call ${verb} /${EXPENSES_API_ROUTE}`, () => {
       service.updateExpenses(expenses).subscribe();
 
-      const request = httpTestingController.expectOne(`${EXPENSES_API_ROUTE}`);
+      const request = httpTestingController.expectOne(
+        `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}`
+      );
       expect(request.request.method).toBe(verb);
       request.flush([]);
     });
@@ -74,7 +82,7 @@ describe('given ExpensesDataAccessService()', () => {
       service.updateExpense(expense.id, expense).subscribe();
 
       const request = httpTestingController.expectOne(
-        `${EXPENSES_API_ROUTE}/${expense.id}`
+        `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}/${expense.id}`
       );
       expect(request.request.method).toBe(verb);
       request.flush({ data: expenses });
@@ -89,7 +97,7 @@ describe('given ExpensesDataAccessService()', () => {
       service.deleteExpense(expense.id).subscribe();
 
       const request = httpTestingController.expectOne(
-        `${EXPENSES_API_ROUTE}/${expense.id}`
+        `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}/${expense.id}`
       );
       expect(request.request.method).toBe(verb);
       request.flush({ data: expenses });
@@ -106,7 +114,7 @@ describe('given ExpensesDataAccessService()', () => {
       service.deleteExpenses(expenseIds).subscribe();
 
       const request = httpTestingController.expectOne(
-        `${EXPENSES_API_ROUTE}/${expenseIdsCommaSeparated}`
+        `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}/${expenseIdsCommaSeparated}`
       );
       expect(request.request.method).toBe(verb);
       request.flush({ data: expenses });
