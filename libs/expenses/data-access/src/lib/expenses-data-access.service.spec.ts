@@ -1,3 +1,4 @@
+import exp = require('constants');
 import {
   HttpClientTestingModule,
   HttpTestingController,
@@ -76,6 +77,33 @@ describe('ExpensesDataAccessService', () => {
       it(`make request to: /${url}`, () => {
         request = httpTestingController.expectOne(url);
         request.flush({ data: expenses });
+      });
+
+      it(`is a ${verb} request`, () => {
+        expect(request.request.method).toBe(verb);
+      });
+    });
+  });
+
+  describe('given getExpense()', () => {
+    const verb = 'GET';
+    const expense = expenses[0];
+    const { id: expenseId } = expense;
+    const url = `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}/${expenseId}`;
+
+    /**
+     * NOTE: Must be run in order
+     */
+    describe('when called with valid id', () => {
+      let request: TestRequest;
+
+      beforeEach(() => {
+        service.getExpense(expenseId).subscribe();
+      });
+
+      it(`make request to: /${url}`, () => {
+        request = httpTestingController.expectOne(url);
+        request.flush({ data: expense });
       });
 
       it(`is a ${verb} request`, () => {
