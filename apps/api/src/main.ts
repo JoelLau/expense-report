@@ -6,11 +6,11 @@
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
+import { GLOBAL_API_PREFIX } from '@expense-report/expenses/shared';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  const globalPrefix = 'api';
-  app.setGlobalPrefix(globalPrefix);
+  app.setGlobalPrefix(GLOBAL_API_PREFIX);
   const port = process.env.PORT || 3333;
   await app.listen(port);
   Logger.log(

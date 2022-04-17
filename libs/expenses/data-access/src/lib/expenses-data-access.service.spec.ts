@@ -1,10 +1,17 @@
+import exp = require('constants');
 import {
   HttpClientTestingModule,
   HttpTestingController,
+  TestRequest,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { ExpensesDataAccessService } from './expenses-data-access.service';
-import { expenses, EXPENSES_API_ROUTE } from '@expense-report/expenses/shared';
+import {
+  expenseInputs,
+  expenses,
+  EXPENSES_API_ROUTE,
+  GLOBAL_API_PREFIX,
+} from '@expense-report/expenses/shared';
 
 describe('ExpensesDataAccessService', () => {
   let service: ExpensesDataAccessService;
@@ -19,97 +26,204 @@ describe('ExpensesDataAccessService', () => {
     httpTestingController = TestBed.inject(HttpTestingController);
   });
 
-  afterEach(() => {
-    httpTestingController.verify();
-  });
-
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  describe('createExpenses', () => {
+  describe('given createExpenses()', () => {
     const verb = 'POST';
+    const url = `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}`;
 
-    it(`should call ${verb} /${EXPENSES_API_ROUTE}`, () => {
-      service.createExpenses(expenses).subscribe();
+    /**
+     * NOTE: Must be run in order
+     */
+    describe('when called', () => {
+      let request: TestRequest;
+      const newExpenses = expenseInputs;
 
-      const request = httpTestingController.expectOne(`${EXPENSES_API_ROUTE}`);
-      expect(request.request.method).toBe(verb);
-      request.flush({ data: expenses });
+      beforeEach(() => {
+        service.createExpenses(newExpenses).subscribe();
+      });
+
+      it(`make request to: /${url}`, () => {
+        request = httpTestingController.expectOne(url);
+        request.flush({ data: expenses });
+      });
+
+      it(`is a ${verb} request`, () => {
+        expect(request.request.method).toBe(verb);
+      });
+
+      it('sends new expenses as part of request body', () => {
+        expect(request.request.body).toBe(newExpenses);
+      });
     });
   });
 
-  describe('getExpense', () => {
+  describe('given getExpenses()', () => {
     const verb = 'GET';
+    const url = `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}`;
 
-    it(`should call ${verb} /${EXPENSES_API_ROUTE}`, () => {
-      const expense = expenses[0];
-      service.getExpense(expense.id).subscribe();
+    /**
+     * NOTE: Must be run in order
+     */
+    describe('when called', () => {
+      let request: TestRequest;
 
-      const request = httpTestingController.expectOne(
-        `${EXPENSES_API_ROUTE}/${expense.id}`
-      );
-      expect(request.request.method).toBe(verb);
-      request.flush({ data: expenses });
+      beforeEach(() => {
+        service.getExpenses().subscribe();
+      });
+
+      it(`make request to: /${url}`, () => {
+        request = httpTestingController.expectOne(url);
+        request.flush({ data: expenses });
+      });
+
+      it(`is a ${verb} request`, () => {
+        expect(request.request.method).toBe(verb);
+      });
     });
   });
 
-  describe('updateExpenses', () => {
+  describe('given getExpense()', () => {
+    const verb = 'GET';
+    const expense = expenses[0];
+    const { id: expenseId } = expense;
+    const url = `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}/${expenseId}`;
+
+    /**
+     * NOTE: Must be run in order
+     */
+    describe('when called with valid id', () => {
+      let request: TestRequest;
+
+      beforeEach(() => {
+        service.getExpense(expenseId).subscribe();
+      });
+
+      it(`make request to: /${url}`, () => {
+        request = httpTestingController.expectOne(url);
+        request.flush({ data: expense });
+      });
+
+      it(`is a ${verb} request`, () => {
+        expect(request.request.method).toBe(verb);
+      });
+    });
+  });
+
+  describe('given updateExpenses()', () => {
     const verb = 'PATCH';
+    const expenseUpdates = expenses;
+    const url = `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}`;
 
-    it(`should call ${verb} /${EXPENSES_API_ROUTE}`, () => {
-      service.updateExpenses(expenses).subscribe();
+    /**
+     * NOTE: Must be run in order
+     */
+    describe('when called with valid updates', () => {
+      let request: TestRequest;
 
-      const request = httpTestingController.expectOne(`${EXPENSES_API_ROUTE}`);
-      expect(request.request.method).toBe(verb);
-      request.flush([]);
+      beforeEach(() => {
+        service.updateExpenses(expenseUpdates).subscribe();
+      });
+
+      it(`make request to: /${url}`, () => {
+        request = httpTestingController.expectOne(url);
+        request.flush({ data: expenses });
+      });
+
+      it(`is a ${verb} request`, () => {
+        expect(request.request.method).toBe(verb);
+      });
+
+      it('sends expense updates as part of request body', () => {
+        expect(request.request.body).toBe(expenseUpdates);
+      });
     });
   });
 
-  describe('updateExpense', () => {
+  describe('given updateExpense()', () => {
     const verb = 'PATCH';
+    const expenseUpdate = expenses[0];
+    const { id: expenseId } = expenseUpdate;
+    const url = `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}/${expenseId}`;
 
-    it(`should call ${verb} /${EXPENSES_API_ROUTE}`, () => {
-      const expense = expenses[0];
-      service.updateExpense(expense.id, expense).subscribe();
+    /**
+     * NOTE: Must be run in order
+     */
+    describe('when called with a valid update', () => {
+      let request: TestRequest;
 
-      const request = httpTestingController.expectOne(
-        `${EXPENSES_API_ROUTE}/${expense.id}`
-      );
-      expect(request.request.method).toBe(verb);
-      request.flush({ data: expenses });
+      beforeEach(() => {
+        service.updateExpense(expenseId, expenseUpdate).subscribe();
+      });
+
+      it(`make request to: /${url}`, () => {
+        request = httpTestingController.expectOne(url);
+        request.flush({ data: expenses });
+      });
+
+      it(`is a ${verb} request`, () => {
+        expect(request.request.method).toBe(verb);
+      });
+
+      it('sends expense updates as part of request body', () => {
+        expect(request.request.body).toBe(expenseUpdate);
+      });
     });
   });
 
-  describe('deleteExpense', () => {
+  describe('given deleteExpenses()', () => {
     const verb = 'DELETE';
+    const expenseIds = expenses.map(({ id }) => id);
+    const commaSeparatedIds =
+      'cl1agau5o0000c80jnx9vmgq4%2Ccl1agau5o0001c80jh76dw1wq%2Ccl1agau5o0002c80jtem4aa74';
+    const url = `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}?ids=${commaSeparatedIds}`;
 
-    it(`should call ${verb} /${EXPENSES_API_ROUTE}`, () => {
-      const expense = expenses[0];
-      service.deleteExpense(expense.id).subscribe();
+    /**
+     * NOTE: Must be run in order
+     */
+    describe('when called with valid ids', () => {
+      let request: TestRequest;
 
-      const request = httpTestingController.expectOne(
-        `${EXPENSES_API_ROUTE}/${expense.id}`
-      );
-      expect(request.request.method).toBe(verb);
-      request.flush({ data: expenses });
+      beforeEach(() => {
+        service.deleteExpenses(expenseIds).subscribe();
+      });
+
+      it(`make request to: /${url}`, () => {
+        request = httpTestingController.expectOne(url);
+        request.flush({ data: expenses });
+      });
+
+      it(`is a ${verb} request`, () => {
+        expect(request.request.method).toBe(verb);
+      });
     });
   });
 
-  describe('deleteExpenses', () => {
+  describe('given deleteExpense()', () => {
     const verb = 'DELETE';
+    const { id: expenseId } = expenses[0];
+    const url = `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}/${expenseId}`;
 
-    it(`should call ${verb} /${EXPENSES_API_ROUTE}`, () => {
-      const expenseIds = expenses.map(({ id }) => id);
-      const expenseIdsCommaSeparated = expenseIds.join(',');
+    /**
+     * NOTE: Must be run in order
+     */
+    describe('when called with valid ids', () => {
+      let request: TestRequest;
 
-      service.deleteExpenses(expenseIds).subscribe();
+      beforeEach(() => {
+        service.deleteExpense(expenseId).subscribe();
+      });
 
-      const request = httpTestingController.expectOne(
-        `${EXPENSES_API_ROUTE}/${expenseIdsCommaSeparated}`
-      );
-      expect(request.request.method).toBe(verb);
-      request.flush({ data: expenses });
+      it(`make request to: /${url}`, () => {
+        request = httpTestingController.expectOne(url);
+        request.flush({ data: expenses });
+      });
+
+      it(`is a ${verb} request`, () => {
+        expect(request.request.method).toBe(verb);
+      });
     });
   });
 });
