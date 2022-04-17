@@ -1,6 +1,7 @@
 import {
   HttpClientTestingModule,
   HttpTestingController,
+  TestRequest,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { ExpensesDataAccessService } from './expenses-data-access.service';
@@ -23,25 +24,25 @@ describe('given ExpensesDataAccessService()', () => {
     httpTestingController = TestBed.inject(HttpTestingController);
   });
 
-  afterEach(() => {
-    httpTestingController.verify();
-  });
-
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
   describe('given createExpenses()', () => {
     const verb = 'POST';
+    const url = `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}`;
 
-    it(`should call ${verb} /${EXPENSES_API_ROUTE}`, () => {
-      service.createExpenses(expenses).subscribe();
+    describe('when called', () => {
+      beforeEach(() => {
+        service.createExpenses(expenses).subscribe();
+      });
 
-      const request = httpTestingController.expectOne(
-        `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}`
-      );
-      expect(request.request.method).toBe(verb);
-      request.flush({ data: expenses });
+      it(`make ${verb} to: /${url}`, () => {
+        const request = httpTestingController.expectOne(url);
+        expect(request.request.method).toBe(verb);
+        request.flush({ data: expenses });
+        httpTestingController.verify();
+      });
     });
   });
 
@@ -114,7 +115,7 @@ describe('given ExpensesDataAccessService()', () => {
       service.deleteExpenses(expenseIds).subscribe();
 
       const request = httpTestingController.expectOne(
-        `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}/${expenseIdsCommaSeparated}`
+        `${EXPENSES_API_ROUTE}/${expenseIdsCommaSeparated}`
       );
       expect(request.request.method).toBe(verb);
       request.flush({ data: expenses });
