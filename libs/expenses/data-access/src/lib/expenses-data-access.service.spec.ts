@@ -172,7 +172,7 @@ describe('ExpensesDataAccessService', () => {
     });
   });
 
-  describe('given deleteExpenses()', () => {
+  describe('given deleteExpense()', () => {
     const verb = 'DELETE';
 
     it(`should call ${verb} /${EXPENSES_API_ROUTE}`, () => {
@@ -182,7 +182,7 @@ describe('ExpensesDataAccessService', () => {
       service.deleteExpenses(expenseIds).subscribe();
 
       const request = httpTestingController.expectOne(
-        `${EXPENSES_API_ROUTE}/${expenseIdsCommaSeparated}`
+        `${GLOBAL_API_PREFIX}/${EXPENSES_API_ROUTE}/${expenseIdsCommaSeparated}`
       );
       expect(request.request.method).toBe(verb);
       request.flush({ data: expenses });
