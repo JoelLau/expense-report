@@ -27,6 +27,7 @@
           (click)="refreshButtonClick()"
           [color]="'transparent'"
           [size]="'sm'"
+          [disabled]="isFetchingExpenses"
           >Refresh</expense-report-button
         >
         <expense-report-expenses-ui-list

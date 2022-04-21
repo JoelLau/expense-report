@@ -8,6 +8,7 @@ export class ButtonComponent {
   @Input() size: ButtonSizes = 'md';
   @Input() color: ButtonColors = 'transparent';
   @Input() border = true;
+  @Input() disabled = false;
 }
 
 export type ButtonSizes = 'zero' | 'sm' | 'md' | 'lg' | 'fill';
