@@ -1,7 +1,38 @@
-<expense-report-button (click)="refreshButtonClick()"
-  >Refresh</expense-report-button
->
+<div class="min-h-full">
+  <nav class="bg-gray-800">
+    <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center">
+          <div class="flex-shrink-0">
+            <img
+              class="w-8 h-8"
+              src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+              alt="Workflow"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
 
-<expense-report-expenses-ui-list
-  [rowData]="expenses$ | async"
-></expense-report-expenses-ui-list>
+  <header class="bg-white shadow">
+    <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <h1 class="text-3xl font-bold text-gray-900">Expenses</h1>
+    </div>
+  </header>
+  <main>
+    <div class="py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div class="flex flex-col gap-4 px-4 py-2 sm:px-0">
+        <expense-report-button
+          (click)="refreshButtonClick()"
+          [color]="'transparent'"
+          [size]="'sm'"
+          >Refresh</expense-report-button
+        >
+        <expense-report-expenses-ui-list
+          [rowData]="expenses$ | async"
+        ></expense-report-expenses-ui-list>
+      </div>
+    </div>
+  </main>
+</div>
