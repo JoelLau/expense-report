@@ -33,7 +33,6 @@
         "libs/shared/ng/common/src/index.ts"
       ],
       "@expense-report/shared/ng/core": ["libs/shared/ng/core/src/index.ts"],
-      "@expense-report/shared/ng/grid": ["libs/shared/ng/grid/src/index.ts"],
       "@expense-report/shared/ui": ["libs/shared/ui/src/index.ts"]
     }
   },
