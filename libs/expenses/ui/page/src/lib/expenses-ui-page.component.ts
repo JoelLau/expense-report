@@ -6,17 +6,6 @@ import { Expense } from '@expense-report/expenses/shared';
 @Component({
   selector: 'expense-report-expenses-ui-page',
   templateUrl: './expenses-ui-page.component.html',
-  // styles: [
-  //   `
-  //     :ng-host {
-  //       background-color: #2c539e;
-  //       @include filter-gradient(#2c539e, #ffffff, vertical);
-  //       @include background-image(
-  //         linear-gradient(top, #2c539e 50%, #ffffff 50%)
-  //       );
-  //     }
-  //   `,
-  // ],
 })
 export class ExpensesUiPageComponent {
   isFetchingExpenses = false;
@@ -38,8 +27,4 @@ export class ExpensesUiPageComponent {
     private service: ExpensesDataAccessService,
     private changeDetector: ChangeDetectorRef
   ) {}
-
-  refreshButtonClick() {
-    this.triggerFetchExpenses$.next(new Date());
-  }
 }
