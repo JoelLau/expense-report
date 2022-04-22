@@ -1,3 +1,5 @@
 <ng-container *ngFor="let expense of rowData">
-  <pre>{{ expense | json }}</pre>
+  <expense-report-expenses-ui-list-item
+    [expense]="expense"
+  ></expense-report-expenses-ui-list-item>
 </ng-container>
