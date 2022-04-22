@@ -1,5 +1,5 @@
-<div class="min-h-full">
-  <nav class="bg-gray-800">
+<div class="min-h-screen px-1 pb-20 bg-overlap xl:px-20 md:px-10">
+  <nav class="mb-2">
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <div class="flex items-center">
@@ -15,21 +15,34 @@
     </div>
   </nav>
 
-  <header class="bg-white shadow">
-    <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
-      <h1 class="text-3xl font-bold text-gray-900">Expenses</h1>
-    </div>
-  </header>
-  <main>
-    <div class="py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+  <main class="px-4 mx-auto bg-white rounded-md shadow">
+    <header
+      class="flex flex-col px-4 py-6 mx-auto gap-y-1 max-w-7xl sm:px-6 lg:px-8"
+    >
+      <div class="flex justify-between">
+        <h1 class="text-3xl font-bold text-gray-900">Expenses</h1>
+        <div class="flex justify-between gap-x-1">
+          <expense-report-button
+            (click)="refreshButtonClick()"
+            [color]="'transparent'"
+            [size]="'sm'"
+            [disabled]="isFetchingExpenses"
+            >Refresh</expense-report-button
+          >
+          <expense-report-button
+            (click)="refreshButtonClick()"
+            [color]="'transparent'"
+            [size]="'sm'"
+            [disabled]="isFetchingExpenses"
+            >Filter</expense-report-button
+          >
+        </div>
+      </div>
+      <small class="text-xl font-bold text-gray-600">4 items selected</small>
+    </header>
+
+    <div class="pb-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
       <div class="flex flex-col gap-4 px-4 py-2 sm:px-0">
-        <expense-report-button
-          (click)="refreshButtonClick()"
-          [color]="'transparent'"
-          [size]="'sm'"
-          [disabled]="isFetchingExpenses"
-          >Refresh</expense-report-button
-        >
         <expense-report-expenses-ui-list
           [rowData]="expenses$ | async"
         ></expense-report-expenses-ui-list>
