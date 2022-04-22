@@ -10,9 +10,9 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
-import { Expense } from '@prisma/client';
 import { ExpensesApiService } from './expenses-api.service';
 import {
+  Expense,
   ExpenseCreateInput,
   EXPENSES_API_ROUTE,
 } from '@expense-report/expenses/shared';
