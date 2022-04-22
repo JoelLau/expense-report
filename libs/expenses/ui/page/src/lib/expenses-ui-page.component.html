@@ -20,19 +20,25 @@
       class="flex flex-col px-4 py-6 mx-auto gap-y-1 max-w-7xl sm:px-6 lg:px-8"
     >
       <div class="flex justify-between">
-        <h1 class="text-3xl font-bold text-gray-900">Expenses</h1>
+        <h1>
+          <expense-report-typography type="h1"
+            >Expenses
+          </expense-report-typography>
+        </h1>
         <div class="flex justify-between gap-x-1">
-          <expense-report-button [color]="'transparent'" [size]="'sm'"
+          <expense-report-button color="transparent" size="sm"
             >Filter</expense-report-button
           >
-          <expense-report-button [color]="'transparent'" [size]="'sm'"
+          <expense-report-button color="transparent" size="sm"
             >New Expense</expense-report-button
           >
         </div>
       </div>
-      <small class="pl-0.5 text-xl font-bold text-gray-600"
-        >4 items selected</small
-      >
+      <small>
+        <expense-report-typography type="h1-small"
+          >4 items selected
+        </expense-report-typography>
+      </small>
     </header>
 
     <div class="pb-6 mx-auto max-w-7xl sm:px-6 lg:px-8">

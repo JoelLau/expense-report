@@ -1,0 +1,11 @@
+<span
+  [ngClass]="{
+    'text-gray-900': ['h1', 'h2'].includes(type),
+    'text-gray-600': ['h1-small'].includes(type),
+    'text-3xl': ['h1'].includes(type),
+    'text-xl': ['h1-small', 'h2'].includes(type),
+    'font-bold': ['h1', 'h2'].includes(type)
+  }"
+>
+  <ng-content></ng-content>
+</span>
