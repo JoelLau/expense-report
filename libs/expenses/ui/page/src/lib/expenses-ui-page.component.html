@@ -1,5 +1,5 @@
 <div class="min-h-screen px-1 pb-20 bg-overlap xl:px-20 md:px-10">
-  <nav class="mb-2">
+  <nav class="p-2">
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <div class="flex items-center">
@@ -15,38 +15,28 @@
     </div>
   </nav>
 
-  <main class="px-4 mx-auto bg-white rounded-md shadow">
-    <header
-      class="flex flex-col px-4 py-6 mx-auto gap-y-1 max-w-7xl sm:px-6 lg:px-8"
-    >
-      <div class="flex justify-between">
-        <h1>
-          <expense-report-typography type="h1"
-            >Expenses
-          </expense-report-typography>
-        </h1>
-        <div class="flex justify-between gap-x-1">
-          <expense-report-button color="transparent" size="sm"
-            >Filter</expense-report-button
-          >
-          <expense-report-button color="transparent" size="sm"
-            >New Expense</expense-report-button
-          >
-        </div>
+  <main
+    class="flex flex-col gap-3 px-4 pt-6 pb-8 bg-white rounded-md shadow sm:px-6 lg:px-8"
+  >
+    <header class="grid grid-cols-2 gap-y-1">
+      <expense-report-typography type="h1">Expenses</expense-report-typography>
+      <expense-report-typography type="h1-small" class="ml-0.5 col-span-2"
+        >4 items selected
+      </expense-report-typography>
+      <div
+        class="flex gap-1 sm:justify-end sm:col-start-2 sm:col-end-3 sm:row-start-1 sm:row-end-2"
+      >
+        <expense-report-button color="transparent" size="sm"
+          >Filter</expense-report-button
+        >
+        <expense-report-button color="transparent" size="sm"
+          >New Expense</expense-report-button
+        >
       </div>
-      <small>
-        <expense-report-typography type="h1-small"
-          >4 items selected
-        </expense-report-typography>
-      </small>
     </header>
 
-    <div class="pb-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
-      <div class="flex flex-col gap-4 px-4 py-2 sm:px-0">
-        <expense-report-expenses-ui-list
-          [rowData]="expenses$ | async"
-        ></expense-report-expenses-ui-list>
-      </div>
-    </div>
+    <expense-report-expenses-ui-list
+      [rowData]="expenses$ | async"
+    ></expense-report-expenses-ui-list>
   </main>
 </div>
