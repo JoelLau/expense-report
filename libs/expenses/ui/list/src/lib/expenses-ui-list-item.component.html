@@ -1,1 +1,25 @@
-<pre *ngIf="expense">{{ expense | json }}</pre>
+<div *ngIf="expense" class="flex items-center justify-start gap-4 py-3">
+  <img
+    class="w-8 h-8"
+    src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+    alt="Workflow"
+  />
+  <div class="grid w-full grid-cols-2">
+    <expense-report-typography
+      type="h2"
+      title="{{ expense.name }}"
+      [noWrap]="true"
+    >
+      {{ expense.name }}
+    </expense-report-typography>
+    <expense-report-typography type="p" [noWrap]="true" xAlign="right">
+      {{ expense.amount | currency }}
+    </expense-report-typography>
+    <expense-report-typography type="p" [noWrap]="true">
+      {{ expense.description }}
+    </expense-report-typography>
+    <expense-report-typography type="p" [noWrap]="true" xAlign="right">
+      {{ expense.date | date }}
+    </expense-report-typography>
+  </div>
+</div>
