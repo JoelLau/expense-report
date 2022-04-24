@@ -7,7 +7,10 @@ import {
   ButtonComponentModule,
   TypographyComponentModule,
 } from '@expense-report/shared/ui';
-import { FilterIconComponentModule } from '@expense-report/shared/assets';
+import {
+  FilterIconComponentModule,
+  PlusIconComponentModule,
+} from '@expense-report/shared/assets';
 
 @NgModule({
   imports: [
@@ -17,6 +20,7 @@ import { FilterIconComponentModule } from '@expense-report/shared/assets';
     ButtonComponentModule,
     TypographyComponentModule,
     FilterIconComponentModule,
+    PlusIconComponentModule,
   ],
   declarations: [ExpensesUiPageComponent],
 })
