@@ -7,6 +7,7 @@ import {
   ButtonComponentModule,
   TypographyComponentModule,
 } from '@expense-report/shared/ui';
+import { FilterIconComponentModule } from '@expense-report/shared/assets';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import {
     ExpensesUiPageRoutingModule,
     ButtonComponentModule,
     TypographyComponentModule,
+    FilterIconComponentModule,
   ],
   declarations: [ExpensesUiPageComponent],
 })
