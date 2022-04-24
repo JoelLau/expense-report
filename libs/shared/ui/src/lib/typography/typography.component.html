@@ -1,0 +1,17 @@
+<div
+  [ngClass]="{
+    'text-gray-900': ['h1', 'h2'].includes(type),
+    'text-gray-600': ['h1-small', 'p'].includes(type),
+    'text-3xl': ['h1'].includes(type),
+    'text-xl': ['h1-small', 'h2'].includes(type),
+    'font-bold': ['h1', 'h2'].includes(type),
+    'text-right': xAlign === 'right',
+    'text-left': xAlign === 'left',
+    'text-center': xAlign === 'center',
+    'text-justify': xAlign === 'justify',
+    'whitespace-nowrap overflow-hidden text-ellipsis max-w-full': noWrap
+  }"
+  [title]="title"
+>
+  <ng-content></ng-content>
+</div>

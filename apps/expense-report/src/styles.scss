@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-/* You can add global styles to this file, and also import other style files */
-@import 'ag-grid-community/dist/styles/ag-grid.css';
-@import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
+.bg-overlap {
+  background: linear-gradient(
+    to bottom,
+    theme('colors.gray.800') 33%,
+    theme('colors.gray.100') 33%
+  );
+}

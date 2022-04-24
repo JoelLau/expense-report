@@ -51,6 +51,7 @@ export class ExpensesApiController {
     const ids = rawIds
       ? (rawIds || '').split(',').map((rawId) => rawId.trim())
       : [];
+
     const data = await this.service.getExpenses(ids);
     return { data };
   }

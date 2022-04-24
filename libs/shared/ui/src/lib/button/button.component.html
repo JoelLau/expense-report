@@ -1,3 +1,15 @@
-<button [type]="type">
+<button
+  [ngClass]="{
+    'text-sm font-medium rounded-md border-2 shadow-sm focus:outline-none focus:ring-offset-2 focus:ring-indigo-500 flex justify-start items-center': true,
+    'text-gray-700 border-gray-500 hover:bg-gray-200 disabled:text-gray-400 disabled:border-gray-200 disabled:bg-gray-200 disabled:cursor-not-allowed':
+      color === 'transparent',
+    'border-none shadow-none': size === 'zero' || !border,
+    'px-2 py-1': size === 'sm',
+    'px-4 py-2': ['md', 'fill'].includes(size),
+    'px-6 py-3': size === 'lg',
+    'w-full': size === 'fill'
+  }"
+  [disabled]="disabled"
+>
   <ng-content></ng-content>
 </button>

@@ -1,7 +1,46 @@
-<expense-report-button (click)="refreshButtonClick()"
-  >Refresh</expense-report-button
->
+<div class="min-h-screen px-1 pb-20 bg-overlap xl:px-20 md:px-10">
+  <nav class="p-2">
+    <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center">
+          <div class="flex-shrink-0">
+            <img
+              class="w-8 h-8"
+              src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+              alt="Workflow"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
 
-<expense-report-expenses-ui-list
-  [rowData]="expenses$ | async"
-></expense-report-expenses-ui-list>
+  <main
+    class="flex flex-col gap-3 px-4 pt-6 pb-8 bg-white rounded-md shadow sm:px-6 lg:px-8"
+  >
+    <header class="grid grid-cols-2 gap-y-1">
+      <expense-report-typography type="h1">Expenses</expense-report-typography>
+      <expense-report-typography type="h1-small" class="ml-0.5 col-span-2"
+        >0 item(s) selected
+      </expense-report-typography>
+      <div
+        class="flex col-span-2 gap-1 mt-2 sm:justify-end sm:col-start-2 sm:col-end-3 sm:row-start-1 sm:row-end-2"
+      >
+        <expense-report-button color="transparent" size="fill">
+          <expense-report-filter-icon class="mr-1"></expense-report-filter-icon>
+          <div class="mr-2">Filter</div>
+        </expense-report-button>
+        <expense-report-button color="transparent" size="fill">
+          <expense-report-plus-icon
+            class="mr-1 -ml-1"
+          ></expense-report-plus-icon>
+          <div class="mr-2">New Expense</div>
+        </expense-report-button>
+      </div>
+    </header>
+
+    <expense-report-expenses-ui-list
+      [rowData]="expenses$ | async"
+    ></expense-report-expenses-ui-list>
+  </main>
+</div>

@@ -1,6 +1,5 @@
-<ag-grid-angular
-  style="width: 100%; height: 50vh"
-  class="ag-theme-alpine"
-  [rowData]="rowData"
-  [gridOptions]="gridOptions"
-></ag-grid-angular>
+<ng-container *ngFor="let expense of rowData">
+  <expense-report-expenses-ui-list-item
+    [expense]="expense"
+  ></expense-report-expenses-ui-list-item>
+</ng-container>
