@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { HeroIconStyle } from '@expense-report/shared/ng/common';
+import { HeroIconStyle } from '../../../index';
 
 @Component({
   selector: 'expense-report-plus-icon',

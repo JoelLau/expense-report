@@ -7,6 +7,6 @@ import { PlusIconComponentModule } from './plus-icon/plus-icon.module';
 @NgModule({
   imports: [CommonModule, FilterIconComponentModule, PlusIconComponentModule],
   declarations: [IconComponent],
-  exports: [IconComponent, FilterIconComponentModule, PlusIconComponentModule],
+  exports: [IconComponent],
 })
 export class IconComponentModule {}

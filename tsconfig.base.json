@@ -29,7 +29,6 @@
       "@expense-report/shared/api/prisma": [
         "libs/shared/api/prisma/src/index.ts"
       ],
-      "@expense-report/shared/assets": ["libs/shared/assets/src/index.ts"],
       "@expense-report/shared/ng/common": [
         "libs/shared/ng/common/src/index.ts"
       ],
