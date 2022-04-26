@@ -77,11 +77,10 @@
     "typescript": "~4.5.2"
   },
   "lint-staged": {
-    "*.{css,scss}": [
+    "*.{css,scss,js,jsx,ts,tsx,html}": [
       "nx format:write"
     ],
     "*.{js,jsx,ts,tsx,html}": [
-      "nx format:write",
       "eslint --fix"
     ]
   }
